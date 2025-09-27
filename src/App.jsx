@@ -1,15 +1,18 @@
-import React from 'react'
-import Navbar from './components/navbar'
-
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import Register from "./pages/Register";
 const App = () => {
   return (
-    <div>
-      <Navbar/>
-      <h1 className="text-3xl font-bold uppercase flex items-center justify-center min-h-screen w-full">
-        Hello world!
-      </h1>
-    </div>
-  )
-}
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+};
 
-export default App
+export default App;
