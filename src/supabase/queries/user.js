@@ -4,9 +4,6 @@ export const createTeam = async (supabase, teamName, moodleId = null, location =
     .from("teams")
     .insert([{ 
       team_name: teamName,
-      moodle_id: moodleId,
-      location: location,
-      year: year
     }])
     .select()
     .single();
