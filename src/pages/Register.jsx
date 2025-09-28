@@ -5,6 +5,7 @@ import TeamNameErrorPopup from "@/components/teamerror";
 import MemberRow from "@/components/MemberRow"; // Adjust path as needed
 import ConfirmationPopup from "@/components/ConfirmationPopup"; // Adjust path as needed
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer"; // Added footer for consistency
 
 const RegisterForm = () => {
   const [teamName, setTeamName] = useState("");
@@ -215,127 +216,202 @@ const RegisterForm = () => {
 
   return (
     <>
-    <Navbar/>
-      <div className="max-w-6xl mx-auto p-5">
-        <TeamNameErrorPopup
-          isVisible={showTeamNameError}
-          teamName={teamName}
-          onClose={closeTeamNameErrorPopup}
-          inputId="teamName"
-        />
+      {/* Copied stars background styles from LandingPage.jsx */}
+      <style>
+        {`
+          @keyframes move-twink-back {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; }
+          }
 
-        <ConfirmationPopup
-          isVisible={showConfirmation}
-          teamName={teamName}
-          members={members}
-          onConfirm={handleConfirmSubmission}
-          onCancel={handleCancelConfirmation}
-          isLoading={isLoading}
-        />
+          @keyframes move-clouds-back {
+            from { background-position: 0 0; }
+            to { background-position: 10000px 0; }
+          }
 
-        <form onSubmit={handleFormSubmit} className="space-y-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
-            Team Registration
-          </h2>
+          .stars-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+          }
 
-          {/* Team Name Section */}
-          <div className="bg-blue-50 border-2 border-blue-500 rounded-lg p-4">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
-              Team Information
-            </h3>
-            <div>
-              <label
-                htmlFor="teamName"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Team Name *
-              </label>
-              <input
-                id="teamName"
-                type="text"
-                value={teamName}
-                onChange={(e) => setTeamName(e.target.value)}
-                placeholder="Enter your team's name"
-                required
-                className={`w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
-                  showTeamNameError
-                    ? "border-2 border-red-500"
-                    : "border border-gray-300"
-                }`}
-              />
-              {showTeamNameError && (
-                <div className="text-red-500 text-xs mt-1 font-medium">
-                  This team name is already taken
-                </div>
-              )}
-            </div>
-          </div>
+          .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
+            z-index: 0;
+          }
 
-          {/* Members Section */}
-          <div className="bg-gray-50 rounded-lg p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-gray-800 m-0">
-                Team Members
+          .twinkling {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
+            animation: move-twink-back 200s linear infinite;
+            z-index: 1;
+          }
+
+          .clouds {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://i.imgur.com/mHbScrQ.png') repeat top center;
+            animation: move-clouds-back 200s linear infinite;
+            z-index: 2;
+          }
+        `}
+      </style>
+      
+      {/* Star Field Background */}
+      <div className="stars-background">
+        <div className="stars"></div>
+        <div className="twinkling"></div>
+        <div className="clouds"></div>
+      </div>
+      
+      {/* Main content wrapper */}
+      <div 
+        style={{
+          backgroundColor: 'transparent',
+          minHeight: '100vh',
+          position: 'relative',
+          zIndex: 10,
+        }}
+      >
+        <Navbar/>
+        <main className="max-w-6xl mx-auto p-5 mt-16">
+          {/* Popups need to be styled for dark mode separately if their styles are self-contained */}
+          <TeamNameErrorPopup
+            isVisible={showTeamNameError}
+            teamName={teamName}
+            onClose={closeTeamNameErrorPopup}
+            inputId="teamName"
+          />
+
+          <ConfirmationPopup
+            isVisible={showConfirmation}
+            teamName={teamName}
+            members={members}
+            onConfirm={handleConfirmSubmission}
+            onCancel={handleCancelConfirmation}
+            isLoading={isLoading}
+          />
+
+          <form onSubmit={handleFormSubmit} className="space-y-6">
+            {/* Main title - styled to match the dark theme */}
+            <h2 className="text-3xl font-bold text-yellow-400 mb-6 text-center font-starjout">
+              Team Registration
+            </h2>
+
+            {/* Team Name Section - updated for dark theme */}
+            <div className="rounded-lg border border-yellow-400/20 bg-black/90 backdrop-blur-sm p-6">
+              <h3 className="text-xl font-semibold text-yellow-400 mb-4">
+                Team Information
               </h3>
-              <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-600 font-medium">
-                  {members.length}/{MAX_MEMBERS} members
-                </span>
-                {members.length < MAX_MEMBERS && (
-                  <button
-                    type="button"
-                    onClick={addMember}
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center space-x-2"
-                  >
-                    <span>+</span>
-                    <span>Add Member</span>
-                  </button>
+              <div>
+                <label
+                  htmlFor="teamName"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
+                  Team Name *
+                </label>
+                <input
+                  id="teamName"
+                  type="text"
+                  value={teamName}
+                  onChange={(e) => setTeamName(e.target.value)}
+                  placeholder="Enter your team's name"
+                  required
+                  className={`w-full p-3 rounded-lg bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 ${
+                    showTeamNameError
+                      ? "border-2 border-red-500"
+                      : "border border-gray-600"
+                  }`}
+                />
+                {showTeamNameError && (
+                  <div className="text-red-500 text-xs mt-1 font-medium">
+                    This team name is already taken
+                  </div>
                 )}
               </div>
             </div>
 
-            <div className="text-sm text-gray-600 mb-4 bg-blue-50 p-3 rounded-lg border-l-4 border-blue-400">
-              <strong>Note:</strong> Fill in at least one member. All members
-              with Name and Moodle ID will be added to the team.
+            {/* Members Section - updated for dark theme */}
+            <div className="rounded-lg border border-yellow-400/20 bg-black/90 backdrop-blur-sm p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-semibold text-yellow-400 m-0">
+                  Team Members
+                </h3>
+                <div className="flex items-center space-x-4">
+                  <span className="text-sm text-gray-300 font-medium">
+                    {members.length}/{MAX_MEMBERS} members
+                  </span>
+                  {members.length < MAX_MEMBERS && (
+                    <button
+                      type="button"
+                      onClick={addMember}
+                      className="bg-yellow-400 hover:bg-yellow-300 text-black px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center space-x-2"
+                    >
+                      <span>+</span>
+                      <span>Add Member</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+              
+              
+
+              {/* Member Rows - assumes MemberRow component is adapted for dark theme */}
+              <div className="space-y-4">
+                {members.map((member, index) => (
+                  <MemberRow
+                    key={index}
+                    member={member}
+                    index={index}
+                    onInputChange={handleMemberInputChange}
+                    onRemove={removeMember}
+                    emailError={emailErrors[index]}
+                    showRemoveButton={members.length > MIN_MEMBERS}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Member Rows */}
-            <div className="space-y-4">
-              {members.map((member, index) => (
-                <MemberRow
-                  key={index}
-                  member={member}
-                  index={index}
-                  onInputChange={handleMemberInputChange}
-                  onRemove={removeMember}
-                  emailError={emailErrors[index]}
-                  showRemoveButton={members.length > MIN_MEMBERS}
-                />
-              ))}
+            {/* Required Fields Note - updated for dark theme */}
+            <div className="text-xs text-gray-400 bg-gray-900/50 p-3 rounded-lg">
+              <strong>* Required fields:</strong> Team Name, and at least one
+              member with Name and Moodle ID
             </div>
-          </div>
 
-          {/* Required Fields Note */}
-          <div className="text-xs text-gray-500 bg-gray-100 p-3 rounded-lg">
-            <strong>* Required fields:</strong> Team Name, and at least one
-            member with Name and Moodle ID
-          </div>
-
-          {/* Submit Button */}
-          <div className="flex justify-center pt-4">
-            <button
-              type="submit"
-              disabled={isLoading}
-              className={`px-8 py-3 text-lg font-semibold text-white rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 ${
-                isLoading
-                  ? "bg-gray-400 cursor-not-allowed opacity-60"
-                  : "bg-blue-600 hover:bg-blue-700 cursor-pointer shadow-lg hover:shadow-xl"
-              }`}
-            >
-              Review & Register Team
-            </button>
-          </div>
-        </form>
+            {/* Submit Button - updated to match landing page theme */}
+            <div className="flex justify-center pt-4">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className={`px-8 py-3 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300 ${
+                  isLoading
+                    ? "bg-gray-600 text-gray-400 cursor-not-allowed opacity-60"
+                    : "bg-yellow-400 hover:bg-yellow-300 text-black cursor-pointer shadow-lg hover:shadow-xl"
+                }`}
+              >
+                Review & Register Team
+              </button>
+            </div>
+          </form>
+        </main>
+        <Footer />
       </div>
     </>
   );
