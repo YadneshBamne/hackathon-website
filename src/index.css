@@ -118,3 +118,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@theme {
+  /* Font Family Configuration */
+  --font-telma: "Telma", "sans-serif";
+  --font-panchang: "Panchang", "sans-serif";
+  --font-stardom: "Stardom", "sans-serif";
+  --font-britney: "Britney", "cursive";
+  --font-comico: "Comico", "cursive";
+  --font-starjout: "Starjout", "sans-serif";  /* Add your font here */
+  
+  /* You can also add other customizations here */
+  --color-primary: #3b82f6;
+  --color-secondary: #8b5cf6;
+}
