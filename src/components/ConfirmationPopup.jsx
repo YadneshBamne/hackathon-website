@@ -1,3 +1,4 @@
+import { AlertTriangle } from "lucide-react";
 import React from "react";
 
 const ConfirmationPopup = ({
@@ -10,147 +11,116 @@ const ConfirmationPopup = ({
 }) => {
   if (!isVisible) return null;
 
-  // Filter for filled members to display
   const filledMembers = members.filter(
     (member) => member.name.trim() && member.moodle_id.trim()
   );
 
   return (
     <>
-      {/* CSS for animations and custom scrollbar */}
       <style>{`
         @keyframes fadeIn {
-          from { 
-            opacity: 0; 
-            transform: scale(0.95);
-          }
-          to { 
-            opacity: 1; 
-            transform: scale(1);
-          }
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
         }
-        .popup-animation {
-          animation: fadeIn 0.3s ease-out forwards;
-        }
-        
-        /* Custom scrollbar for a themed look */
-        .themed-scrollbar::-webkit-scrollbar {
-          width: 8px;
-        }
-        .themed-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
-        }
-        .themed-scrollbar::-webkit-scrollbar-thumb {
-          background: #fbbd23; /* yellow-400 */
-          border-radius: 10px;
-        }
-        .themed-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #fca510; /* yellow-500 */
-        }
+        .popup-animation { animation: fadeIn 0.3s ease-out forwards; }
+        .themed-scrollbar::-webkit-scrollbar { width: 8px; }
+        .themed-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        .themed-scrollbar::-webkit-scrollbar-thumb { background: #fbbd23; border-radius: 10px; }
+        .themed-scrollbar::-webkit-scrollbar-thumb:hover { background: #fca510; }
       `}</style>
 
-      {/* Modal Overlay */}
-      <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 p-4">
-        {/* Modal Content */}
-        <div className="popup-animation bg-black/90 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden border border-yellow-400/30">
-          {/* Header */}
-          <div className="text-yellow-400 px-6 py-4 border-b border-yellow-400/30">
-            <h2 className="text-xl font-bold font-starjout flex items-center">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
+        {/* MODIFIED: Added 'flex flex-col' to make this a flex container */}
+        <div className="popup-animation flex w-full max-w-4xl max-h-[90vh] flex-col overflow-hidden rounded-xl border border-yellow-400/30 bg-black/90 shadow-2xl">
+          {/* Header (will not grow or shrink) */}
+          <div className="border-b border-yellow-400/30 px-6 py-4 text-yellow-400">
+            <h2 className="flex items-center font-starjout text-xl font-bold">
               Confirm Registration
             </h2>
           </div>
+          <div className="mx-6 mt-4 mb-2 flex items-start gap-4 rounded-lg border border-yellow-500 bg-yellow-400/20 px-6 py-4">
+            <div className="flex-shrink-0">
+              <AlertTriangle className="mt-2 h-6 w-6 text-yellow-400" />
+            </div>
+            <div className="flex-grow">
+              <p className="font-bold text-yellow-200">
+                Important: Registration Details Are Final
+              </p>
+              <p className="text-sm text-yellow-300/80">
+                Once confirmed, details cannot be changed. The names provided
+                will be printed on your certificate.
+              </p>
+            </div>
+          </div>
 
-          {/* Scrollable Content */}
-          <div className="overflow-y-auto max-h-[calc(90vh-150px)] p-6 space-y-6 themed-scrollbar">
+          {/* MODIFIED: Removed max-h and added 'flex-1' to make it fill available space */}
+          <div className="flex-1 space-y-6 overflow-y-auto p-6 themed-scrollbar">
             {/* Team Information */}
-            <div className="bg-black/30 border border-yellow-400/20 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-yellow-400 mb-3">
+            <div className="rounded-lg border border-yellow-400/20 bg-black/30 p-4">
+              <h3 className="mb-3 text-lg font-semibold text-yellow-400">
                 Team Information
               </h3>
               <div className="flex items-center">
-                <span className="font-medium text-gray-400 w-28">
+                <span className="w-28 font-medium text-gray-400">
                   Team Name:
                 </span>
-                <span className="text-white font-semibold text-lg">
+                <span className="text-lg font-semibold text-white">
                   {teamName}
                 </span>
               </div>
             </div>
-            
+
             {/* Members Information */}
-            <div className="bg-black/30 border border-yellow-400/20 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-yellow-400 mb-4">
+            <div className="rounded-lg border border-yellow-400/20 bg-black/30 p-4">
+              <h3 className="mb-4 text-lg font-semibold text-yellow-400">
                 Team Members to be Registered ({filledMembers.length})
               </h3>
-
               <div className="space-y-4">
                 {filledMembers.map((member, index) => (
                   <div
                     key={index}
-                    className="bg-gray-900/50 border border-gray-700/50 rounded-lg p-4"
+                    className="rounded-lg border border-gray-700/50 bg-gray-900/50 p-4"
                   >
-                    <h4 className="font-semibold text-gray-200 text-base mb-3">
+                    <h4 className="mb-3 text-base font-semibold text-gray-200">
                       Member {index + 1}
                     </h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-2 text-sm">
-                      <DetailItem label="Name" value={member.name} highlight />
-                      <DetailItem
-                        label="Moodle ID"
-                        value={member.moodle_id}
-                        highlight
-                      />
-                      {member.location && (
-                        <DetailItem label="Location" value={member.location} />
-                      )}
-                      {member.year && (
-                        <DetailItem label="Year" value={member.year} />
-                      )}
-                      {member.phone && (
-                        <DetailItem label="Phone" value={member.phone} />
-                      )}
-                      {member.div && (
-                        <DetailItem label="Division" value={member.div} />
-                      )}
-                      {member.email_id && (
-                        <DetailItem
-                          label="Email"
-                          value={member.email_id}
-                          fullWidth
-                        />
-                      )}
+                    <div className="grid grid-cols-1 gap-y-2 gap-x-4 text-sm md:grid-cols-2 lg:grid-cols-3">
+                      <DetailItem label="Full Name" value={member.name} highlight />
+                      <DetailItem label="Moodle ID" value={member.moodle_id} highlight />
+                      {member.location && (<DetailItem label="Location" value={member.location} />)}
+                      {member.year && <DetailItem label="Year" value={member.year} />}
+                      {member.phone && <DetailItem label="Phone" value={member.phone} />}
+                      {member.div && <DetailItem label="Division" value={member.div} />}
+                      {member.email_id && (<DetailItem label="Email" value={member.email_id} fullWidth />)}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Warning Note */}
           </div>
 
-          {/* Footer with Action Buttons */}
-          <div className="border-t border-yellow-400/30 px-6 py-4 bg-black/50">
+          {/* Footer (will not grow or shrink) */}
+          <div className="border-t border-yellow-400/30 bg-black/50 px-6 py-4">
             <div className="flex justify-end space-x-3">
               <button
                 onClick={onCancel}
                 disabled={isLoading}
-                className="px-6 py-2 bg-transparent border border-yellow-400 text-yellow-400 rounded-lg hover:bg-yellow-400/10 focus:outline-none transition-colors duration-200 disabled:opacity-50"
+                className="rounded-lg border border-yellow-400 bg-transparent px-6 py-2 text-yellow-400 transition-colors duration-200 hover:bg-yellow-400/10 focus:outline-none disabled:opacity-50"
               >
                 Cancel
               </button>
-
               <button
                 onClick={onConfirm}
                 disabled={isLoading}
-                className={`px-8 py-2 text-black font-semibold rounded-lg focus:outline-none transition-all duration-200 ${
+                className={`rounded-lg px-8 py-2 font-semibold text-black transition-all duration-200 focus:outline-none ${
                   isLoading
-                    ? "bg-yellow-300/70 cursor-not-allowed"
-                    : "bg-yellow-400 hover:bg-yellow-300 shadow-lg"
+                    ? "cursor-not-allowed bg-yellow-300/70"
+                    : "bg-yellow-400 shadow-lg hover:bg-yellow-300"
                 }`}
               >
                 {isLoading ? (
                   <div className="flex items-center space-x-2">
-                    <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent"></div>
                     <span>Confirming...</span>
                   </div>
                 ) : (
@@ -165,7 +135,6 @@ const ConfirmationPopup = ({
   );
 };
 
-// Helper component for displaying details
 const DetailItem = ({ label, value, highlight = false, fullWidth = false }) => (
   <div className={`flex flex-col ${fullWidth ? "lg:col-span-3" : ""}`}>
     <span className="font-medium text-gray-500">{label}:</span>

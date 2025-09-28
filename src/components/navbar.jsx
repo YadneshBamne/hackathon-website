@@ -7,14 +7,16 @@ const Navbar = () => {
 
   const navItems = [
     { href: "/tracks", label: "Tracks" },
+    { href: "/rules", label: "Rules" },
   ]
   
   return (
     <header className="fixed top-0 z-50 w-full bg-transparent backdrop-blur-sm border-b border-yellow-400/20">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
         <div className="flex items-center gap-3">
+          
           <Link to="/" className="flex items-center gap-3">
-            <span className="text-3xl tracking-widest font-starjout text-yellow-400 drop-shadow-lg hover:text-yellow-300 transition-colors">
+            <span className="text-4xl tracking-widest font-starjout text-yellow-400 drop-shadow-lg hover:text-yellow-300 transition-colors">
               HackNova
             </span>
           </Link>
@@ -76,7 +78,7 @@ const Navbar = () => {
               </Link>
             ))}
             <Link to="/register" onClick={() => setOpen(false)}>
-              <Button className="w-full bg-yellow-400 text-black hover:bg-yellow-300 font-medium">
+              <Button className="w-full bg-yellow-400 text-black hover:bg-yellow-300 font-medium cursor-pointer">
                 Register
               </Button>
             </Link>

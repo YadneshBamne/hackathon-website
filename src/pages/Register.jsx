@@ -1,6 +1,8 @@
 import supabase from "@/supabase/client";
 import { addTeamMembers, createTeam } from "@/supabase/queries/user";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import TeamNameErrorPopup from "@/components/teamerror";
 import MemberRow from "@/components/MemberRow"; // Adjust path as needed
 import ConfirmationPopup from "@/components/ConfirmationPopup"; // Adjust path as needed
@@ -13,7 +15,6 @@ const RegisterForm = () => {
   const [showTeamNameError, setShowTeamNameError] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  // Initialize with exactly 4 members
   const [members, setMembers] = useState(
     Array(4)
       .fill(null)
@@ -22,16 +23,14 @@ const RegisterForm = () => {
         moodle_id: "",
         location: "",
         year: "",
-        phone: "",
         div: "",
+        phone: "",
         email_id: "",
       }))
   );
 
-  // Email errors state for 4 members
   const [emailErrors, setEmailErrors] = useState(Array(4).fill(""));
 
-  // Email validation function
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -64,35 +63,39 @@ const RegisterForm = () => {
     event.preventDefault();
 
     if (!teamName.trim()) {
-      alert("Please enter a team name.");
+      toast.error("Please enter a team name.");
       return;
     }
 
     let hasEmailErrors = false;
-    const updatedEmailErrors = [...emailErrors];
-
-    members.forEach((member, index) => {
+    const updatedEmailErrors = members.map((member) => {
       if (member.email_id && !validateEmail(member.email_id)) {
-        updatedEmailErrors[index] = "Please enter a valid email address";
         hasEmailErrors = true;
-      } else {
-        updatedEmailErrors[index] = "";
+        return "Please enter a valid email address";
       }
+      return "";
     });
 
     setEmailErrors(updatedEmailErrors);
 
     if (hasEmailErrors) {
-      alert("Please fix email format errors before submitting.");
+      toast.error("Please fix email format errors before submitting.");
       return;
     }
 
-    const filledMembers = members.filter(
-      (member) => member.name.trim() && member.moodle_id.trim()
+    const allMembersComplete = members.every(
+      (member) =>
+        member.name.trim() &&
+        member.moodle_id.trim() &&
+        member.location.trim() &&
+        member.year &&
+        member.div &&
+        member.phone.trim() &&
+        member.email_id.trim()
     );
 
-    if (filledMembers.length === 0) {
-      alert("Please fill in at least one member with Name and Moodle ID.");
+    if (!allMembersComplete) {
+      toast.warn("Please fill in all details for all 4 members before submission.");
       return;
     }
 
@@ -100,10 +103,6 @@ const RegisterForm = () => {
   };
 
   const handleConfirmSubmission = async () => {
-    const filledMembers = members.filter(
-      (member) => member.name.trim() && member.moodle_id.trim()
-    );
-
     setIsLoading(true);
 
     try {
@@ -121,6 +120,7 @@ const RegisterForm = () => {
           setShowTeamNameError(true);
           setShowConfirmation(false);
           setIsLoading(false);
+          toast.error("This team name is already taken.");
           return;
         }
         throw new Error(`Error creating team: ${teamError.message}`);
@@ -129,16 +129,14 @@ const RegisterForm = () => {
       const { data: membersData, error: membersError } = await addTeamMembers(
         supabase,
         teamData.id,
-        filledMembers
+        members
       );
 
       if (membersError) {
         throw new Error(`Error adding members: ${membersError.message}`);
       }
 
-      alert("Team and members registered successfully!");
-      console.log("Created team:", teamData);
-      console.log("Inserted members:", membersData);
+      toast.success("Team and members registered successfully!");
 
       setTeamName("");
       setShowTeamNameError(false);
@@ -151,16 +149,16 @@ const RegisterForm = () => {
             moodle_id: "",
             location: "",
             year: "",
-            phone: "",
             div: "",
+            phone: "",
             email_id: "",
           }))
       );
       setEmailErrors(Array(4).fill(""));
     } catch (error) {
-      alert(error.message);
-      console.error("Registration error:", error);
+      toast.error(error.message);
       setShowConfirmation(false);
+      console.error("Registration error:", error);
     }
 
     setIsLoading(false);
@@ -172,25 +170,42 @@ const RegisterForm = () => {
 
   return (
     <>
-      <style>
-        {`
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+      <style>{`
           @keyframes move-twink-back { from { background-position: 0 0; } to { background-position: -10000px 5000px; } }
           @keyframes move-clouds-back { from { background-position: 0 0; } to { background-position: 10000px 0; } }
           .stars-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; pointer-events: none; }
           .stars { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center; z-index: 0; }
           .twinkling { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center; animation: move-twink-back 200s linear infinite; z-index: 1; }
           .clouds { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent url('https://i.imgur.com/mHbScrQ.png') repeat top center; animation: move-clouds-back 200s linear infinite; z-index: 2; }
-        `}
-      </style>
-      
+        `}</style>
+
       <div className="stars-background">
         <div className="stars"></div>
         <div className="twinkling"></div>
         <div className="clouds"></div>
       </div>
-      
-      <div style={{ backgroundColor: 'transparent', minHeight: '100vh', position: 'relative', zIndex: 10 }}>
-        <Navbar/>
+
+      <div
+        style={{
+          backgroundColor: "transparent",
+          minHeight: "100vh",
+          position: "relative",
+          zIndex: 10,
+        }}
+      >
+        <Navbar />
         <main className="max-w-6xl mx-auto p-5 mt-16">
           <TeamNameErrorPopup
             isVisible={showTeamNameError}
@@ -218,7 +233,10 @@ const RegisterForm = () => {
                 Team Information
               </h3>
               <div>
-                <label htmlFor="teamName" className="block text-sm font-medium text-gray-300 mb-2">
+                <label
+                  htmlFor="teamName"
+                  className="block text-sm font-medium text-gray-300 mb-2"
+                >
                   Team Name *
                 </label>
                 <input
@@ -229,7 +247,9 @@ const RegisterForm = () => {
                   placeholder="Enter your team's name"
                   required
                   className={`w-full p-3 rounded-lg bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 ${
-                    showTeamNameError ? "border-2 border-red-500" : "border border-gray-600"
+                    showTeamNameError
+                      ? "border-2 border-red-500"
+                      : "border border-gray-600"
                   }`}
                 />
                 {showTeamNameError && (
@@ -246,7 +266,6 @@ const RegisterForm = () => {
                   Team Members (4 required)
                 </h3>
               </div>
-              
               <div className="space-y-4">
                 {members.map((member, index) => (
                   <MemberRow

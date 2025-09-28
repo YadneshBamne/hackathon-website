@@ -10,14 +10,17 @@ const MemberRow = ({ member, index, onInputChange, emailError }) => {
     <div className="mb-6 rounded-lg border border-yellow-500/30 bg-black/30 p-5 backdrop-blur-sm shadow-lg relative hover:shadow-yellow-500/20 transition-all duration-300">
       <div className="flex justify-between items-center mb-5">
         <h4 className="text-xl font-semibold text-yellow-400 m-0 font-starjout">
-          Member {index + 1} {index === 0 && <span className="text-base text-yellow-200">(Team Leader)</span>}
+          Member {index + 1}{" "}
+          {index === 0 && (
+            <span className="text-base text-yellow-200">(Team Leader)</span>
+          )}
         </h4>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <input
           type="text"
-          placeholder="Name *"
+          placeholder="Full Name*"
           value={member.name}
           onChange={(e) => onInputChange(index, "name", e.target.value)}
           className={inputStyle}
@@ -25,7 +28,7 @@ const MemberRow = ({ member, index, onInputChange, emailError }) => {
 
         <input
           type="text"
-          placeholder="Moodle ID *"
+          placeholder="Moodle ID*"
           value={member.moodle_id}
           onChange={(e) => onInputChange(index, "moodle_id", e.target.value)}
           className={inputStyle}
@@ -33,7 +36,7 @@ const MemberRow = ({ member, index, onInputChange, emailError }) => {
 
         <input
           type="text"
-          placeholder="Location"
+          placeholder="Location*"
           value={member.location}
           onChange={(e) => onInputChange(index, "location", e.target.value)}
           className={inputStyle}
@@ -45,7 +48,7 @@ const MemberRow = ({ member, index, onInputChange, emailError }) => {
           className={inputStyle}
         >
           <option value="" disabled>
-            Select Year
+            Select Year*
           </option>
           {yearOptions.map((year) => (
             <option key={year} value={year}>
@@ -53,22 +56,13 @@ const MemberRow = ({ member, index, onInputChange, emailError }) => {
             </option>
           ))}
         </select>
-
-        <input
-          type="tel"
-          placeholder="Phone"
-          value={member.phone}
-          onChange={(e) => onInputChange(index, "phone", e.target.value)}
-          className={inputStyle}
-        />
-
         <select
           value={member.div}
           onChange={(e) => onInputChange(index, "div", e.target.value)}
           className={inputStyle}
         >
           <option value="" disabled>
-            Select Division
+            Select Division*
           </option>
           {divisionOptions.map((div) => (
             <option key={div} value={div}>
@@ -77,10 +71,18 @@ const MemberRow = ({ member, index, onInputChange, emailError }) => {
           ))}
         </select>
 
+        <input
+          type="tel"
+          placeholder="Phone*"
+          value={member.phone}
+          onChange={(e) => onInputChange(index, "phone", e.target.value)}
+          className={inputStyle}
+        />
+
         <div className="lg:col-span-3">
           <input
             type="email"
-            placeholder="College Email"
+            placeholder="College Email*"
             value={member.email_id}
             onChange={(e) => onInputChange(index, "email_id", e.target.value)}
             className={`${inputStyle} ${

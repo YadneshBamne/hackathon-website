@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import Register from "./pages/Register";
 import TeamsInfoPage from "./pages/TeamInfoPage";
 import Tracks from "./pages/Tracks";
+import Rules from "./pages/Rules";
 const App = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/Teaminfopage" element={<TeamsInfoPage />} />
           <Route path="/tracks" element={<Tracks />} />
+          <Route path="/rules" element={<Rules />} />
         </Routes>
       </BrowserRouter>
     </>
