@@ -27,7 +27,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
           key={i}
           className="star"
           style={{
-            position: 'relative',
+            position: 'absolute',
             top: '50%',
             left: '50%',
             zIndex: 9,
@@ -296,7 +296,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 position: 'absolute',
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateY(90deg) translateZ(500px)'
               }} />
@@ -306,7 +306,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 position: 'absolute',
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateY(-90deg) translateZ(500px)'
               }} />
@@ -316,7 +316,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 position: 'absolute',
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateX(90deg) translateZ(500px)'
               }} />
@@ -326,7 +326,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 position: 'absolute',
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateX(-90deg) translateZ(500px)'
               }} />
@@ -336,7 +336,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 position: 'absolute',
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateX(180deg) translateZ(500px)'
               }} />
@@ -364,7 +364,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
                 animationDelay: '6s',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateY(90deg) translateZ(500px)'
               }} />
@@ -375,7 +375,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
                 animationDelay: '6s',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateY(-90deg) translateZ(500px)'
               }} />
@@ -386,7 +386,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
                 animationDelay: '6s',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateX(90deg) translateZ(500px)'
               }} />
@@ -397,7 +397,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
                 animationDelay: '6s',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateX(-90deg) translateZ(500px)'
               }} />
@@ -408,7 +408,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 opacity: 0,
                 animation: 'fade 12s infinite linear',
                 animationDelay: '6s',
-                background: 'url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/436243/Hyperspacetunnel.png")',
+                background: 'url("https://c0.wallpaperflare.com/preview/557/288/926/shooting-monochrome-space-background-starry-sky.jpg")',
                 backgroundSize: 'cover',
                 transform: 'rotateX(180deg) translateZ(500px)'
               }} />
@@ -480,7 +480,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
               animation: 'flightplan 19s ease-in-out 1'
             }}
           >
-            {/* BB Unit */}
+            {/* BB Unit
             <div 
               className="bb-unit"
               style={{
@@ -499,7 +499,7 @@ const CompleteStarWarsPreloader = ({ onComplete, duration = 19000 }) => {
                 transform: 'rotate(-1deg)',
                 animation: 'bb-swivel 19s ease-out 1'
               }}
-            />
+            /> */}
             
             {/* Thrusters */}
             <div 

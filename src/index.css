@@ -128,8 +128,35 @@
   --font-comico: "Comico", "cursive";
   --font-starjout: "Starjout", "sans-serif";  /* Add your font here */
   --font-starjedi: "Starjedi", "sans-serif";  /* Add your font here */
-  
+  --font-starjhol: "Starjhol",;   /* Add your font here */
+  --font-tanker: "Tanker", "sans-serif";
   /* You can also add other customizations here */
   --color-primary: #3b82f6;
   --color-secondary: #8b5cf6;
+}
+
+
+.starwars-outline {
+  color: #010101;
+  -webkit-text-stroke: 4px #FDC700; /* Yellow outline */
+  text-stroke: 2px #FDC700;         /* Fallback */
+}
+
+
+/* Add this to your existing style block */
+
+/* Optional: Add animation to the red line */
+@keyframes redLineGlow {
+  0%, 100% { 
+    opacity: 0.8;
+    filter: blur(0.5px);
+  }
+  50% { 
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+.red-glow-line {
+  animation: redLineGlow 3s ease-in-out infinite;
 }

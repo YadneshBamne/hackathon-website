@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import CombinedSpaceAnimation from "@/components/preloader";
 import ScrollVelocity from "@/components/variabletext";
+import { AnimatePresence } from "framer-motion";
 
 
 const items = [
@@ -109,7 +110,7 @@ const CountdownTimer = () => {
   const getTimerTitle = () => {
     switch (eventStatus) {
       case 'upcoming':
-        return 'Event Starts In:';
+        return 'Event Starts in:';
       case 'live':
         return '🔴 LIVE - Event Ends In:';
       case 'ended':
@@ -123,7 +124,7 @@ const CountdownTimer = () => {
   const getTimerColor = () => {
     switch (eventStatus) {
       case 'upcoming':
-        return 'text-yellow-400';
+        return 'text-yellow-400 font-starjedi tracking-wider';
       case 'live':
         return 'text-red-400 animate-pulse';
       case 'ended':
@@ -149,33 +150,155 @@ const CountdownTimer = () => {
         <>
       
 
+<div className={`flex justify-center space-x-4 sm:space-x-6 md:space-x-8 lg:space-x-12 ${getTimerColor()} font-tanker`}>
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8, delay: 0 }}
+    className="flex flex-col items-center"
+  >
+    <div className="flex text-6xl sm:text-7xl md:text-8xl tracking-wider">
+      {timeLeft.days.toString().padStart(2, '0').split('').map((digit, index) => (
+        <AnimatePresence key={`days-${index}`} mode="wait">
+          <motion.span
+            key={`${digit}-${index}`}
+            initial={{ y: -30, opacity: 0, rotateX: 90 }}
+            animate={{ y: 0, opacity: 1, rotateX: 0 }}
+            exit={{ y: 30, opacity: 0, rotateX: -90 }}
+            transition={{ 
+              duration: 0.5, 
+              ease: [0.4, 0, 0.2, 1],
+              delay: index * 0.1 
+            }}
+            className="inline-block"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            {digit}
+          </motion.span>
+        </AnimatePresence>
+      ))}
+    </div>
+    <motion.span
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.5 }}
+      className="block text-lg md:text-xl font-medium text-muted-foreground mt-2"
+    >
+      Days
+    </motion.span>
+  </motion.div>
 
-          <div className={`flex justify-center space-x-12 ${getTimerColor()} font-extrabold`}>
-            <div className="text-6xl sm:text-7xl md:text-8xl">
-              {timeLeft.days.toString().padStart(2, '0')}
-              <span className="block text-lg md:text-xl font-medium text-muted-foreground mt-2">
-                Days
-              </span>
-            </div>
-            <div className="text-6xl sm:text-7xl md:text-8xl">
-              {timeLeft.hours.toString().padStart(2, '0')}
-              <span className="block text-lg md:text-xl font-medium text-muted-foreground mt-2">
-                Hours
-              </span>
-            </div>
-            <div className="text-6xl sm:text-7xl md:text-8xl">
-              {timeLeft.minutes.toString().padStart(2, '0')}
-              <span className="block text-lg md:text-xl font-medium text-muted-foreground mt-2">
-                Minutes
-              </span>
-            </div>
-            <div className="text-6xl sm:text-7xl md:text-8xl">
-              {timeLeft.seconds.toString().padStart(2, '0')}
-              <span className="block text-lg md:text-xl font-medium text-muted-foreground mt-2">
-                Seconds
-              </span>
-            </div>
-          </div>
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8, delay: 0.2 }}
+    className="flex flex-col items-center"
+  >
+    <div className="flex text-6xl sm:text-7xl md:text-8xl tracking-wider">
+      {timeLeft.hours.toString().padStart(2, '0').split('').map((digit, index) => (
+        <AnimatePresence key={`hours-${index}`} mode="wait">
+          <motion.span
+            key={`${digit}-${index}`}
+            initial={{ y: -30, opacity: 0, rotateX: 90 }}
+            animate={{ y: 0, opacity: 1, rotateX: 0 }}
+            exit={{ y: 30, opacity: 0, rotateX: -90 }}
+            transition={{ 
+              duration: 0.5, 
+              ease: [0.4, 0, 0.2, 1],
+              delay: index * 0.1 
+            }}
+            className="inline-block"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            {digit}
+          </motion.span>
+        </AnimatePresence>
+      ))}
+    </div>
+    <motion.span
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.7 }}
+      className="block text-lg md:text-xl font-medium text-muted-foreground mt-2"
+    >
+      Hours
+    </motion.span>
+  </motion.div>
+
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8, delay: 0.4 }}
+    className="flex flex-col items-center"
+  >
+    <div className="flex text-6xl sm:text-7xl md:text-8xl tracking-wider">
+      {timeLeft.minutes.toString().padStart(2, '0').split('').map((digit, index) => (
+        <AnimatePresence key={`minutes-${index}`} mode="wait">
+          <motion.span
+            key={`${digit}-${index}`}
+            initial={{ y: -30, opacity: 0, rotateX: 90 }}
+            animate={{ y: 0, opacity: 1, rotateX: 0 }}
+            exit={{ y: 30, opacity: 0, rotateX: -90 }}
+            transition={{ 
+              duration: 0.5, 
+              ease: [0.4, 0, 0.2, 1],
+              delay: index * 0.1 
+            }}
+            className="inline-block"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            {digit}
+          </motion.span>
+        </AnimatePresence>
+      ))}
+    </div>
+    <motion.span
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.9 }}
+      className="block text-lg md:text-xl font-medium text-muted-foreground mt-2"
+    >
+      Minutes
+    </motion.span>
+  </motion.div>
+
+  <motion.div
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8, delay: 0.6 }}
+    className="flex flex-col items-center"
+  >
+    <div className="flex text-6xl sm:text-7xl md:text-8xl tracking-wider">
+      {timeLeft.seconds.toString().padStart(2, '0').split('').map((digit, index) => (
+        <AnimatePresence key={`seconds-${index}`} mode="wait">
+          <motion.span
+            key={`${digit}-${index}`}
+            initial={{ y: -30, opacity: 0, rotateX: 90 }}
+            animate={{ y: 0, opacity: 1, rotateX: 0 }}
+            exit={{ y: 30, opacity: 0, rotateX: -90 }}
+            transition={{ 
+              duration: 0.5, 
+              ease: [0.4, 0, 0.2, 1],
+              delay: index * 0.1 
+            }}
+            className="inline-block"
+            style={{ transformStyle: 'preserve-3d' }}
+          >
+            {digit}
+          </motion.span>
+        </AnimatePresence>
+      ))}
+    </div>
+    <motion.span
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 1.1 }}
+      className="block text-lg md:text-xl font-medium text-muted-foreground mt-2"
+    >
+      Seconds
+    </motion.span>
+  </motion.div>
+</div>
 
 
           {eventStatus === 'live' && (
@@ -206,7 +329,7 @@ const CustomPreloaderWrapper = ({ onComplete }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, 10000);
+    }, 9500);
     
     return () => clearTimeout(timer);
   }, [onComplete]);
@@ -362,17 +485,61 @@ const LandingPage = () => {
             </motion.h1>
 
 
-            <motion.h2
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: preloaderState === 'completed' ? 0.4 : 0.1 
-              }}
-              className="text-balance text-xl font-medium leading-tight tracking-wide md:text-3xl lg:text-4xl mt-6 text-white font-starjout"
-            >
-              Chart your path in the Stellar <br/> <span className="text-8xl font-bold bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 bg-clip-text text-transparent">HackNova</span>
-            </motion.h2>
+<motion.h2
+  initial={{ opacity: 0, y: 8 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: 0.8,
+    delay: preloaderState === "completed" ? 0.4 : 0.1,
+  }}
+  className="text-xl leading-tight tracking-wider md:text-3xl lg:text-4xl mt-6 text-white font-starjout relative"
+>
+  Chart your path in the Stellar <br />
+  
+  <div className="relative inline-block">
+    {/* Red Glowing Line Behind Text - Positioned relative to the text span */}
+    <div className="absolute inset-0 flex items-center justify-center w-full h-full mt-3">
+      {/* Full-width line extending beyond text */}
+      <div 
+        className="absolute h-1 z-[-1] "
+        style={{
+          width: '99vw',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(220, 38, 38, 0.1) 20%, rgba(220, 38, 38, 0.8) 50%, rgba(220, 38, 38, 0.1) 80%, transparent 100%)',
+          boxShadow: `
+            0 0 8px rgba(220, 38, 38, 0.9),
+            0 0 16px rgba(220, 38, 38, 0.7),
+            0 0 32px rgba(220, 38, 38, 0.5),
+            0 0 64px rgba(220, 38, 38, 0.3)
+          `
+        }}
+      />
+      {/* Intense center glow */}
+<div
+  className="absolute h-2 w-full z-[-1]"
+  style={{
+    background: 'linear-gradient(90deg, transparent 0%, rgba(220, 38, 38, 1) 50%, transparent 100%)',
+    boxShadow: `
+      0 0 8px rgba(220, 38, 38, 1),
+      0 0 16px rgba(220, 38, 38, 0.9),
+      0 0 32px rgba(220, 38, 38, 0.7),
+      0 0 64px rgba(220, 38, 38, 0.5),
+      0 0 128px rgba(220, 38, 38, 0.3)
+    `,
+    filter: 'blur(20px)',
+  }}
+/>
+
+    </div>
+    
+    <span className="starwars-outline text-[8rem] font-starjout tracking-[0.05em] relative z-10">
+      hacknova
+    </span>
+  </div>
+</motion.h2>
+
+
 
 
             <motion.h3
@@ -391,7 +558,6 @@ const LandingPage = () => {
             <CountdownTimer />
 
 
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-px w-48 bg-yellow-400/20" aria-hidden="true" />
           </section>
         </div>
         
