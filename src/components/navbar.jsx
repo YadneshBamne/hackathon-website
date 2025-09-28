@@ -6,10 +6,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false)
 
   const navItems = [
-    { href: "#about", label: "About" },
-    { href: "#schedule", label: "Schedule" },
-    { href: "#tracks", label: "Tracks" },
-    { href: "#faq", label: "FAQ" },
+    { href: "/tracks", label: "Tracks" },
   ]
   
   return (

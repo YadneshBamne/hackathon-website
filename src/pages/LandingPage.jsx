@@ -6,9 +6,10 @@ import Footer from "@/components/footer";
 import CombinedSpaceAnimation from "@/components/preloader";
 import ScrollVelocity from "@/components/variabletext";
 
+
 const items = [
   {
-    title: "48 Hours",
+    title: "18 Hours",
     desc: "Two focused days to ideate, build, and demo your project.",
   },
   {
@@ -16,46 +17,38 @@ const items = [
     desc: "Guidance from industry mentors throughout the event.",
   },
   {
-    title: "Team or Solo",
+    title: "Team",
     desc: "Join with friends or match with collaborators on-site.",
   },
   {
-    title: "Prizes & Swag",
+    title: "Prizes",
     desc: "Win recognition, prizes, and exclusive event swag.",
   },
 ]
 
-// Timeline data with updated dates
+
+// Timeline data with updated schedule
 const timelineEvents = [
   {
-    day: "Day 1",
-    date: "October 3, 2025 (Friday)",
+    day: "Friday",
+    date: "October 3, 2025",
     events: [
-      { time: "09:00 AM", title: "Registration & Check-in", description: "Welcome to HackNova! Get your badges and swag." },
-      { time: "10:00 AM", title: "Opening Ceremony", description: "Kick-off with inspiring talks and event overview." },
-      { time: "11:00 AM", title: "Team Formation", description: "Find your galactic crew or form new alliances." },
-      { time: "12:00 PM", title: "Hacking Begins", description: "Start building your stellar projects!" },
-      { time: "01:00 PM", title: "Lunch Break", description: "Fuel up for the coding marathon." },
-      { time: "06:00 PM", title: "Mentor Sessions", description: "Get guidance from industry experts." },
-      { time: "08:00 PM", title: "Dinner", description: "Evening meal to keep you energized." },
-      { time: "12:00 AM", title: "Midnight Snacks", description: "Late-night fuel for coding warriors." }
+      { time: "7:00 PM", title: "Kickoff & Problem Statement Reveal", description: "All teams must submit a form with their idea brief and public GitHub repository link." },
+      { time: "11:00 PM", title: "Mentorship Session (Online)", description: "One mentor will be allocated to each team. 15 minutes will be given to each team to clarify their doubts." },
+      { time: "12:00 AM", title: "Soft Deadline", description: "Initial submissions are due." }
     ]
   },
   {
-    day: "Day 2", 
-    date: "October 4, 2025 (Saturday)",
+    day: "Saturday",
+    date: "October 4, 2025",
     events: [
-      { time: "08:00 AM", title: "Breakfast", description: "Start your day with energy." },
-      { time: "10:00 AM", title: "Progress Check", description: "Share your progress with mentors." },
-      { time: "12:00 PM", title: "Final Sprint", description: "Last hours to polish your projects." },
-      { time: "01:00 PM", title: "Lunch", description: "Final meal before submissions." },
-      { time: "03:00 PM", title: "Project Submission", description: "Submit your stellar creations." },
-      { time: "04:00 PM", title: "Project Showcase", description: "Present your solutions to the galaxy." },
-      { time: "06:00 PM", title: "Judging & Evaluation", description: "Expert judges review all projects." },
-      { time: "07:30 PM", title: "Closing Ceremony", description: "Awards, recognition, and celebration!" }
+      { time: "6:30 AM", title: "First Evaluation (Checkpoint) - Online", description: "Teams must submit their code repo and a short presentation. Judges/mentors provide brief feedback." },
+      { time: "3:00 PM", title: "Final Evaluation (Offline in College)", description: "Each team presents their project (5–7 min demo + Q&A). A judging panel evaluates based on criteria." },
+      { time: "5:00 PM", title: "Closing Ceremony", description: "Winners are announced and certificates are distributed." }
     ]
   }
 ];
+
 
 // Enhanced Countdown Timer Component with IST support
 const CountdownTimer = () => {
@@ -66,18 +59,22 @@ const CountdownTimer = () => {
     seconds: 0
   });
 
+
   const [eventStatus, setEventStatus] = useState('upcoming'); // 'upcoming', 'live', 'ended'
 
+
   useEffect(() => {
-    // HackNova starts on Friday, October 3, 2025 at 9:00 AM IST
-    const hackathonStartDate = new Date('2025-10-03T09:00:00+05:30').getTime();
-    // Event ends on Saturday, October 4, 2025 at 7:30 PM IST
-    const hackathonEndDate = new Date('2025-10-04T19:30:00+05:30').getTime();
+    // HackNova starts on Friday, October 3, 2025 at 7:00 PM IST
+    const hackathonStartDate = new Date('2025-10-03T19:00:00+05:30').getTime();
+    // Event ends on Saturday, October 4, 2025 at 5:00 PM IST
+    const hackathonEndDate = new Date('2025-10-04T17:00:00+05:30').getTime();
+
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distanceToStart = hackathonStartDate - now;
       const distanceToEnd = hackathonEndDate - now;
+
 
       if (distanceToStart > 0) {
         // Event hasn't started yet
@@ -104,8 +101,10 @@ const CountdownTimer = () => {
       }
     }, 1000);
 
+
     return () => clearInterval(timer);
   }, []);
+
 
   const getTimerTitle = () => {
     switch (eventStatus) {
@@ -120,6 +119,7 @@ const CountdownTimer = () => {
     }
   };
 
+
   const getTimerColor = () => {
     switch (eventStatus) {
       case 'upcoming':
@@ -132,6 +132,7 @@ const CountdownTimer = () => {
         return 'text-yellow-400';
     }
   };
+
 
   return (
     <motion.div
@@ -147,6 +148,7 @@ const CountdownTimer = () => {
       {eventStatus !== 'ended' && (
         <>
       
+
 
           <div className={`flex justify-center space-x-12 ${getTimerColor()} font-extrabold`}>
             <div className="text-6xl sm:text-7xl md:text-8xl">
@@ -175,6 +177,7 @@ const CountdownTimer = () => {
             </div>
           </div>
 
+
           {eventStatus === 'live' && (
             <motion.div 
               initial={{ opacity: 0 }}
@@ -187,6 +190,7 @@ const CountdownTimer = () => {
         </>
       )}
 
+
       {eventStatus === 'ended' && (
         <div className="mt-6 bg-gray-800/50 border border-gray-600/40 rounded-full px-8 py-4 inline-block">
           <span className="text-gray-400 text-lg">🏆 Thank you for being part of HackNova 2025!</span>
@@ -195,6 +199,7 @@ const CountdownTimer = () => {
     </motion.div>
   );
 };
+
 
 // Custom wrapper for preloader
 const CustomPreloaderWrapper = ({ onComplete }) => {
@@ -206,6 +211,7 @@ const CustomPreloaderWrapper = ({ onComplete }) => {
     return () => clearTimeout(timer);
   }, [onComplete]);
 
+
   return (
     <div className="fixed inset-0 w-screen h-screen bg-[#131314] z-[9999] overflow-hidden">
       <div className="relative w-full h-full">
@@ -215,13 +221,16 @@ const CustomPreloaderWrapper = ({ onComplete }) => {
   );
 };
 
+
 const LandingPage = () => {
   const [preloaderState, setPreloaderState] = useState(() => {
     const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
     return hasSeenPreloader ? 'completed' : 'loading';
   });
 
+
   const [velocity, setVelocity] = useState(1);
+
 
   const handlePreloaderComplete = () => {
     setPreloaderState('transitioning');
@@ -231,6 +240,7 @@ const LandingPage = () => {
       setPreloaderState('completed');
     }, 300);
   };
+
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -242,13 +252,16 @@ const LandingPage = () => {
       lastScrollY = currentScrollY;
     };
 
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
   if (preloaderState === 'loading') {
     return <CustomPreloaderWrapper onComplete={handlePreloaderComplete} />;
   }
+
 
   return (
     <>
@@ -278,29 +291,35 @@ const LandingPage = () => {
             }
           }
 
+
           @keyframes move-twink-back {
             from { background-position: 0 0; }
             to { background-position: -10000px 5000px; }
           }
+
 
           @keyframes move-clouds-back {
             from { background-position: 0 0; }
             to { background-position: 10000px 0; }
           }
 
+
           .stars-background {
             background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
           }
+
 
           .twinkling {
             background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
             animation: move-twink-back 200s linear infinite;
           }
 
+
           .clouds {
             background: transparent url('https://i.imgur.com/mHbScrQ.png') repeat top center;
             animation: move-clouds-back 200s linear infinite;
           }
+
 
           .timeline-line {
             background: linear-gradient(to bottom, 
@@ -342,6 +361,7 @@ const LandingPage = () => {
               The universe is calling
             </motion.h1>
 
+
             <motion.h2
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -351,8 +371,9 @@ const LandingPage = () => {
               }}
               className="text-balance text-xl font-medium leading-tight tracking-wide md:text-3xl lg:text-4xl mt-6 text-white font-starjout"
             >
-              Chart your path in the Stellar HackNova
+              Chart your path in the Stellar <br/> <span className="text-8xl font-bold bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 bg-clip-text text-transparent">HackNova</span>
             </motion.h2>
+
 
             <motion.h3
               initial={{ opacity: 0, y: 8 }}
@@ -361,12 +382,14 @@ const LandingPage = () => {
                 duration: 0.8, 
                 delay: preloaderState === 'completed' ? 0.5 : 0.15 
               }}
-              className="text-balance text-lg font-normal leading-relaxed tracking-wide md:text-2xl lg:text-3xl mt-4 text-yellow-300 font-starjout"
+              className="text-balance text-lg font-normal leading-relaxed tracking-wide md:text-2xl lg:text-3xl mt-4 text-white font-starjout"
             >
               Launch your ideas into orbit
             </motion.h3>
 
+
             <CountdownTimer />
+
 
             <div className="pointer-events-none absolute inset-x-0 bottom-0 mx-auto h-px w-48 bg-yellow-400/20" aria-hidden="true" />
           </section>
@@ -390,36 +413,13 @@ const LandingPage = () => {
                 About HackNova
               </h2>
               <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                HackNova is a 48-hour intergalactic coding odyssey where brilliant minds unite to solve the universe's greatest challenges. 
+                HackNova is a 18-hour intergalactic coding odyssey where brilliant minds unite to solve the universe's greatest challenges. 
                 Powered by the force of innovation, collaboration, and stellar creativity.
               </p>
             </motion.div>
 
-            {/* About Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
-            >
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-yellow-400 font-starjout">500</div>
-                <div className="text-gray-400 mt-2">Galactic Participants</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-yellow-400 font-starjout">48</div>
-                <div className="text-gray-400 mt-2">Hours of Creation</div>
-              </div>
-                <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-yellow-400 font-starjout">₹50k</div>
-                  <div className="text-gray-400 mt-2">Prize Pool</div>
-                </div>
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-yellow-400 font-starjout">20</div>
-                <div className="text-gray-400 mt-2">Jedi Mentors</div>
-              </div>
-            </motion.div>
+
+
 
             {/* Features Grid */}
             <motion.div 
@@ -445,6 +445,7 @@ const LandingPage = () => {
               ))}
             </motion.div>
 
+
             {/* CTA Section */}
             <motion.div
               initial={{ opacity: 0, y: 8 }}
@@ -454,19 +455,12 @@ const LandingPage = () => {
               className="text-center"
             >
               <div className="flex flex-wrap items-center justify-center gap-6">
-                <a href="/register">
-                  <Button 
-                    size="lg" 
-                    className="px-12 py-6 text-xl bg-yellow-400 text-black hover:bg-yellow-300 font-bold rounded-full transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-yellow-400/40"
-                  >
-                    Join the Alliance
-                  </Button>
-                </a>
+                
                 <a href="#timeline">
                   <Button
                     size="lg"
                     variant="outline"
-                    className="px-12 py-6 text-xl bg-transparent border-3 border-yellow-400 text-yellow-400 hover:bg-yellow-400/10 rounded-full transform hover:scale-105 transition-all duration-300"
+                    className="px-12 py-6 text-xl bg-transparent border-3 border-yellow-400 text-yellow-400 hover:bg-yellow-500 cursor-pointer rounded-full "
                   >
                     View Timeline
                   </Button>
@@ -475,6 +469,7 @@ const LandingPage = () => {
             </motion.div>
           </section>
         </div>
+
 
         {/* TIMELINE SECTION */}
         <div 
@@ -494,9 +489,10 @@ const LandingPage = () => {
                 Mission Timeline
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Your 48-hour journey through the HackNova galaxy. Mark your calendars and prepare for an epic adventure!
+                Your 18-hour journey through the HackNova galaxy. Mark your calendars and prepare for an epic adventure!
               </p>
             </motion.div>
+
 
             {/* Timeline Content */}
             <div className="space-y-16">
@@ -517,8 +513,9 @@ const LandingPage = () => {
                     <div className="ml-4 text-gray-400 text-lg">{dayEvent.date}</div>
                   </div>
 
+
                   {/* Events Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {dayEvent.events.map((event, eventIndex) => (
                       <motion.div
                         key={eventIndex}
@@ -537,6 +534,7 @@ const LandingPage = () => {
                 </motion.div>
               ))}
             </div>
+
 
             {/* Timeline CTA */}
             <motion.div
@@ -571,5 +569,6 @@ const LandingPage = () => {
     </>
   );
 };
+
 
 export default LandingPage;

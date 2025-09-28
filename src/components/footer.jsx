@@ -1,26 +1,19 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
+import { Building, Instagram, Mail, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const socialLinks = [
-    { name: 'Twitter', href: '#', icon: '🐦' },
-    { name: 'Instagram', href: '#', icon: '📸' },
-    { name: 'LinkedIn', href: '#', icon: '💼' },
-    { name: 'Discord', href: '#', icon: '💬' }
-  ];
-
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Timeline', href: '#timeline' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Contact', href: '#contact' }
+    { name: "About", href: "#about" },
+    { name: "Timeline", href: "#timeline" },
   ];
 
   const organizerLinks = [
-    { name: 'CSA', href: '#' },
-    { name: 'CC', href: '#' },
-    { name: 'GDG', href: '#' },
-    { name: 'APSIT', href: '#' }
+    { name: "CSA", href: "#" },
+    { name: "CC", href: "#" },
+    { name: "GDG", href: "#" },
+    { name: "APSIT", href: "#" },
   ];
 
   return (
@@ -36,7 +29,6 @@ const Footer = () => {
       <div className="relative mx-auto max-w-7xl px-4 py-16 md:px-6">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
           {/* Brand Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -50,23 +42,23 @@ const Footer = () => {
                 HackNova
               </h3>
               <p className="text-gray-300 leading-relaxed text-sm">
-                The galactic hackathon where stellar minds unite to build the future. 
-                Join the alliance and launch your ideas into orbit.
+                The galactic hackathon where stellar minds unite to build the
+                future. Join the alliance and launch your ideas into orbit.
               </p>
-            </div>
-            
-            {/* Social Links */}
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="w-10 h-10 bg-yellow-400/10 border border-yellow-400/30 rounded-full flex items-center justify-center text-yellow-400 hover:bg-yellow-400/20 hover:border-yellow-400/50 transition-all duration-300 hover:scale-110"
-                  aria-label={social.name}
-                >
-                  <span className="text-sm">{social.icon}</span>
-                </a>
-              ))}
+              <div>
+                <p className="flex gap-2 text-white mb-2 mt-2">
+                  <Instagram className="text-pink-500 hover:text-pink-700 hover:scale-110 transition-transform transition-colors" />
+                  <Link to="https://www.instagram.com/comp_engg_apsit?igsh=b2w3aHF3dTFrOTYy">CSA</Link>
+                </p>
+                <p className="flex gap-2 text-white mb-2">
+                  <Instagram className="text-pink-500 hover:text-pink-700 hover:scale-110 transition-transform transition-colors" />
+                  <Link to="https://www.instagram.com/codersclub_apsit?igsh=eGFodGw1NGZhNDh1">CC</Link>
+                </p>
+                <p className="flex gap-2 text-white mb-2">
+                  <Instagram className="text-pink-500 hover:text-pink-700 hover:scale-110 transition-transform transition-colors" />
+                  <Link to="https://www.instagram.com/gdg.apsit?igsh=ZW9kZnluNXlnY2d1">GDG</Link>
+                </p>
+              </div>
             </div>
           </motion.div>
 
@@ -127,43 +119,21 @@ const Footer = () => {
               Contact Mission Control
             </h4>
             <div className="space-y-3 text-sm text-gray-400">
-              <p>📧 contact@hacknova.in</p>
-              <p>📞 +91 98765 43210</p>
-              <p>📍 APSIT, Thane, Mumbai</p>
-              <p>🗓️ December 14-15, 2025</p>
+              <p className="flex gap-2">
+                <Phone size={16} />
+                Jatin Khanijoan:{" "}
+              </p>
+              <p className="flex gap-2">
+                <Phone size={16} />
+                Sarakshi More:{" "}
+              </p>
+              <p className="flex gap-2">
+                <Phone size={16} />
+                Khushi Jadhav:{" "}
+              </p>
             </div>
           </motion.div>
         </div>
-
-        {/* Newsletter Signup */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-r from-yellow-400/5 to-transparent border border-yellow-400/20 rounded-2xl p-8 mb-12"
-        >
-          <div className="text-center md:text-left md:flex md:items-center md:justify-between">
-            <div className="mb-6 md:mb-0">
-              <h4 className="text-xl font-semibold text-yellow-400 font-starjout mb-2">
-                Stay in the Loop
-              </h4>
-              <p className="text-gray-300 text-sm">
-                Get updates about HackNova and future galactic missions
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="your.email@galaxy.com"
-                className="px-4 py-3 bg-black/50 border border-yellow-400/30 rounded-lg text-white placeholder-gray-500 focus:border-yellow-400 focus:outline-none transition-colors"
-              />
-              <button className="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-300 transition-colors duration-300 transform hover:scale-105">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </motion.div>
 
         {/* Bottom Section */}
         <motion.div
@@ -176,22 +146,32 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
               <p className="text-gray-400 text-sm mb-2">
-                © {new Date().getFullYear()} HackNova. All rights reserved across the galaxy.
+                © {new Date().getFullYear()} HackNova. All rights reserved
+                across the galaxy.
               </p>
               <p className="text-gray-500 text-xs">
                 May the code be with you. Always.
               </p>
             </div>
-            
+
             {/* Legal Links */}
             <nav className="flex items-center gap-6 text-xs text-gray-500">
-              <a href="#privacy" className="hover:text-yellow-400 transition-colors">
+              <a
+                href="#privacy"
+                className="hover:text-yellow-400 transition-colors"
+              >
                 Privacy Policy
               </a>
-              <a href="#terms" className="hover:text-yellow-400 transition-colors">
+              <a
+                href="#terms"
+                className="hover:text-yellow-400 transition-colors"
+              >
                 Terms of Service
               </a>
-              <a href="#cookies" className="hover:text-yellow-400 transition-colors">
+              <a
+                href="#cookies"
+                className="hover:text-yellow-400 transition-colors"
+              >
                 Cookie Policy
               </a>
             </nav>
