@@ -6,6 +6,7 @@ import { ReactLenis } from "lenis/react";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ReactLenis root/>
     <App />
   </StrictMode>,
 )
