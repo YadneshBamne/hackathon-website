@@ -17,7 +17,7 @@ const rulesData = [
       "The event will be conducted in Hybrid Mode.",
       "All team members must report to the college on time with the full team present.",
       "Any delay will lead to disqualification of the team.",
-      "No excuses such as distance, traffic, or personal reasons will be accepted — so plan accordingly.",
+      "No excuses such as distance, traffic, or personal reasons will be accepted so plan accordingly.",
     ],
   },
   {
@@ -29,11 +29,11 @@ const rulesData = [
     ],
   },
   {
-    title: "Deliverables and Evaluation",
+    title: "First Evaluation",
     points: [
-      "Teams must submit their checkpoint deliverables at 6:30 AM sharp.",
+      "Teams must be ready for first evaluation at 6:00 AM sharp.",
       "Final presentation is mandatory for all shortlisted teams.",
-      "Judges’ decisions will be final and binding.",
+      "Judges decisions will be final and binding.",
     ],
   },
   {

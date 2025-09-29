@@ -28,9 +28,10 @@ const socialLinks = [
 ];
 
 const contactInfo = [
-  { name: "Bhavesh Jain", phone: "" },
-  { name: "Sarakshi More", phone: "" },
-  { name: "Khushi Jadhav", phone: "" },
+  { name: "Dr.Rushikesh Nikam", phone: "+91 8767415507" },
+  { name: "Jatin Khanijoan", phone: "+91 9167695865" },
+  { name: "Sarakshi More", phone: "+91 7506628036" },
+  { name: "Khushi Jadhav", phone: "+91 9359077040" },
 ];
 
 const legalLinks = [

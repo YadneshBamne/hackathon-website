@@ -39,22 +39,22 @@ const timelineEvents = [
       },
       {
         
-        time: "7:00 PM",
-        title: "Problem Statement Reveal",
+        time: "7:00 PM - 8:00 PM",
+        title: "Doubt Session",
         description:
-          "The problem statements are live! Dive in, brainstorm with your team, and start shaping your ideas.",
+          "If you have any doubts you can contact the core team members through the gmeet link which will be circulated in the team leaders group",
       },
       {
-        time: "9:00 PM",
-        title: "Problem Statement Reveal",
+        time: "8:00 PM- 9:00 PM",
+        title: "uploading selected PS",
         description:
-          "All teams must submit a form with their idea brief and public GitHub repository link.",
+          "All teams must submit a form with their idea brief and public GitHub repository along with your G-meet link.",
       },
       {
-        time: "11:00 PM",
+        time: "11:00 PM Onwards",
         title: "Mentorship Session (online)",
         description:
-          "One mentor will be allocated to each team. 15 minutes will be given to each team to clarify their doubts.",
+          "Each team gets one mentor available all night until 6 AM. Mentors may drop into your Meet anytime, and you can reach out with doubts.",
       },
     ],
   },
@@ -63,19 +63,29 @@ const timelineEvents = [
     date: "October 4, 2025",
     events: [
       {
-        time: "6:30 AM",
+        time: "6:00 AM",
         title: "First Evaluation (Checkpoint) - online",
         description:
-          "Teams must submit their code repo and a short presentation. Judges/mentors provide brief feedback.",
+          "Teams must submit their code repo and a short ppt. Evaluators will evaluate each team.",
+      },
+      {
+        time: "8:30 AM",
+        title: "Shortlisted team announcement",
+        description: "Shortlisted teams must report to college before 10 AM with all members present - late arrival leads to disqualification.",
+      },
+      {
+        time: "10:00 AM - 01:00 PM",
+        title: "",
+        description: "Shortlisted teams will wait in respective labs and continue working on their projects. ",
+      },
+      {
+        time: "1:00 PM",
+        title: "Final Evaluation (offline in College)",
+        description:
+          "Each team presents their project with final ppt and prototype. A judging panel evaluates based on criteria.",
       },
       {
         time: "3:00 PM",
-        title: "Final Evaluation (offline in College)",
-        description:
-          "Each team presents their project (5–7 min demo + Q&A). A judging panel evaluates based on criteria.",
-      },
-      {
-        time: "5:00 PM",
         title: "Closing Ceremony",
         description: "Winners are announced and certificates are distributed.",
       },
@@ -441,6 +451,7 @@ const LandingPage = () => {
               <h2 className="text-4xl md:text-6xl font-bold text-yellow-400 font-starjout mb-6 mt-16">
                 About HackNova
               </h2>
+              <p className="text-white mb-6 font-starjout text-xl tracking-widest   ">CSA x GDG x Coder's Club</p>
               <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
                 HackNova is a 18-hour intergalactic coding odyssey where
                 brilliant minds unite to solve the universe's greatest

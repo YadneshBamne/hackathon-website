@@ -278,11 +278,11 @@ const RegisterForm = () => {
                 ))}
               </div>
             </div>
-
+{/* 
             <div className="text-xs text-gray-400 bg-gray-900/50 p-3 rounded-lg">
               <strong>* Required fields:</strong> Team Name, and at least one
               member with Name and Moodle ID
-            </div>
+            </div> */}
 
             <div className="flex justify-center pt-4">
               <button

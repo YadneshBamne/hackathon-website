@@ -172,3 +172,7 @@
 *{
   user-select: none;
 }
+
+html{
+  background-color: #010101;
+}
