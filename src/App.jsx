@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import TeamsInfoPage from "./pages/TeamInfoPage";
 import Tracks from "./pages/Tracks";
 import Rules from "./pages/Rules";
+import LightsaberComponent from "./components/lightsaber";
 const App = () => {
   return (
     <>
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/Teaminfopage" element={<TeamsInfoPage />} />
           <Route path="/tracks" element={<Tracks />} />
           <Route path="/rules" element={<Rules />} />
+          <Route path="/saber" element={<LightsaberComponent />} />
         </Routes>
       </BrowserRouter>
     </>

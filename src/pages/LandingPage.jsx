@@ -92,64 +92,65 @@ const PosterModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
-          onClick={handleBackdropClick}
-        >
-          {/* Backdrop with glow effect */}
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm">
-            <div className="absolute inset-0 bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse" />
-          </div>
+    // <AnimatePresence>
+    //   {isOpen && (
+    //     <motion.div
+    //       initial={{ opacity: 0 }}
+    //       animate={{ opacity: 1 }}
+    //       exit={{ opacity: 0 }}
+    //       transition={{ duration: 0.3 }}
+    //       className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+    //       onClick={handleBackdropClick}
+    //     >
+         
+    //       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm">
+    //         <div className="absolute inset-0 bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse" />
+    //       </div>
 
-          {/* Modal Content */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            className="relative bg-[#131314] rounded-2xl p-4 max-w-4xl max-h-[90vh] shadow-2xl border border-yellow-400/30"
-            style={{
-              boxShadow:
-                "0 0 50px rgba(250, 204, 21, 0.3), 0 0 100px rgba(250, 204, 21, 0.2), 0 0 150px rgba(250, 204, 21, 0.1)",
-            }}
-          >
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-red-500/20 hover:bg-red-500/30 border border-red-400/50 rounded-full transition-all duration-200 group"
-            >
-              <svg
-                className="w-5 h-5 text-red-400 group-hover:text-red-300"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+          
+    //       <motion.div
+    //         initial={{ scale: 0.8, opacity: 0 }}
+    //         animate={{ scale: 1, opacity: 1 }}
+    //         exit={{ scale: 0.8, opacity: 0 }}
+    //         transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+    //         className="relative bg-[#131314] rounded-2xl p-4 max-w-4xl max-h-[90vh] shadow-2xl border border-yellow-400/30"
+    //         style={{
+    //           boxShadow:
+    //             "0 0 50px rgba(250, 204, 21, 0.3), 0 0 100px rgba(250, 204, 21, 0.2), 0 0 150px rgba(250, 204, 21, 0.1)",
+    //         }}
+    //       >
+            
+    //         <button
+    //           onClick={onClose}
+    //           className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-red-500/20 hover:bg-red-500/30 border border-red-400/50 rounded-full transition-all duration-200 group"
+    //         >
+    //           <svg
+    //             className="w-5 h-5 text-red-400 group-hover:text-red-300"
+    //             fill="none"
+    //             strokeLinecap="round"
+    //             strokeLinejoin="round"
+    //             strokeWidth={2}
+    //             viewBox="0 0 24 24"
+    //             stroke="currentColor"
+    //           >
+    //             <path d="M6 18L18 6M6 6l12 12" />
+    //           </svg>
+    //         </button>
 
-            {/* Poster Image */}
-            <motion.img
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              src="/poster.png"
-              alt="HackNova Event Poster"
-              className="w-full h-full object-contain rounded-xl max-h-[80vh]"
-            />
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            
+    //         <motion.img
+    //           initial={{ scale: 0.9 }}
+    //           animate={{ scale: 1 }}
+    //           transition={{ duration: 0.5, delay: 0.2 }}
+    //           src="/poster.png"
+    //           alt="HackNova Event Poster"
+    //           className="w-full h-full object-contain rounded-xl max-h-[80vh]"
+    //         />
+    //       </motion.div>
+    //     </motion.div>
+    //   )}
+    // </AnimatePresence>
+    <></>
   );
 };
 
