@@ -172,7 +172,8 @@
 *{
   user-select: none;
 }
-
-html{
+ body{
   background-color: #010101;
-}
+ }
+
+

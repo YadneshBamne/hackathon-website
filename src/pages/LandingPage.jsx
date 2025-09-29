@@ -455,6 +455,7 @@ const LandingPage = () => {
               <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
                 HackNova is a 18-hour intergalactic coding odyssey where
                 brilliant minds unite to solve the universe's greatest
+                
                 challenges. Powered by the force of innovation, collaboration,
                 and stellar creativity.
               </p>
