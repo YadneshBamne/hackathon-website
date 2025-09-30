@@ -37,13 +37,13 @@ const timelineEvents = [
         description:
           "The problem statements are live! Dive in, brainstorm with your team, and start shaping your ideas.",
       },
-      {
+      // {
         
-        time: "7:00 PM - 8:00 PM",
-        title: "Doubt Session",
-        description:
-          "If you have any doubts you can contact the core team members through the gmeet link which will be circulated in the team leaders group",
-      },
+      //   time: "7:00 PM - 8:00 PM",
+      //   title: "Doubt Session",
+      //   description:
+      //     "If you have any doubts you can contact the core team members through the gmeet link which will be circulated in the team leaders group",
+      // },
       {
         time: "8:00 PM- 9:00 PM",
         title: "uploading selected PS",
@@ -51,11 +51,17 @@ const timelineEvents = [
           "All teams must submit a form with their idea brief and public GitHub repository along with your G-meet link.",
       },
       {
-        time: "11:00 PM Onwards",
-        title: "Mentorship Session (online)",
+        time: "9:00 PM",
+        title: "Hackathon Starts",
         description:
-          "Each team gets one mentor available all night until 6 AM. Mentors may drop into your Meet anytime, and you can reach out with doubts.",
+          "All teams can start working on their projects. Let the coding begin!",
       },
+      // {
+      //   time: "9:00 PM Onwards",
+      //   title: "Mentorship Session (online)",
+      //   description:
+      //     "From evening onwards, mentors will be available to guide teams. Each team will get 15 minutes with their mentor to seek guidance.",
+      // },
     ],
   },
   {
