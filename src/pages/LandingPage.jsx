@@ -52,9 +52,9 @@ const timelineEvents = [
       },
       {
         time: "9:00 PM",
-        title: "Hackathon Starts",
+        title: "MENToRSHiP SESSioN (oNLiNE)",
         description:
-          "All teams can start working on their projects. Let the coding begin!",
+          "Mentors will be available to guide teams. Each team will get 15 minutes with their mentor to seek guidance.",
       },
       // {
       //   time: "9:00 PM Onwards",
