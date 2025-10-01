@@ -208,7 +208,7 @@ const RegisterForm = () => {
         }}
       >
         <Navbar />
-        <main className="max-w-6xl mx-auto p-5 mt-16">
+        <main className="max-w-6xl mx-auto p-4 sm:p-5 mt-12 sm:mt-16">
           <TeamNameErrorPopup
             isVisible={showTeamNameError}
             teamName={teamName}
@@ -225,8 +225,11 @@ const RegisterForm = () => {
             isLoading={isLoading}
           />
 
-          <div className="min-h-screen flex flex-col items-center justify-center">
-            <p className="font-starjout text-yellow-400 drop-shadow-lg hover:text-yellow-300 transition-colors text-7xl mb-20">Registrations have been <span className="flex justify-center">closed.</span></p>
+          <div className="min-h-screen flex flex-col items-center justify-center px-4">
+            <p className="font-starjout text-yellow-400 drop-shadow-lg hover:text-yellow-300 transition-colors text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-10 sm:mb-20 text-center leading-tight">
+              Registrations have been{" "}
+              <span className="block mt-2 sm:mt-0 sm:inline">closed.</span>
+            </p>
           </div>
         </main>
         <Footer />
