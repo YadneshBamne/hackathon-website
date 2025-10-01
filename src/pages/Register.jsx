@@ -263,7 +263,9 @@ const RegisterForm = () => {
             <div className="rounded-lg border border-yellow-400/20 bg-black/90 backdrop-blur-sm p-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-semibold text-yellow-400 m-0">
-                  Team Members (4 required)
+                  Team Members (4 required) <span className="text-sm font-light italic text-yellow-200/90">
+    *Only for Computer Engineering department
+  </span>
                 </h3>
               </div>
               <div className="space-y-4">
