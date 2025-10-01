@@ -95,7 +95,9 @@ const RegisterForm = () => {
     );
 
     if (!allMembersComplete) {
-      toast.warn("Please fill in all details for all 4 members before submission.");
+      toast.warn(
+        "Please fill in all details for all 4 members before submission."
+      );
       return;
     }
 
@@ -223,83 +225,9 @@ const RegisterForm = () => {
             isLoading={isLoading}
           />
 
-          <form onSubmit={handleFormSubmit} className="space-y-6">
-            <h2 className="text-3xl font-bold text-yellow-400 mb-6 text-center font-starjout">
-              Team Registration
-            </h2>
-
-            <div className="rounded-lg border border-yellow-400/20 bg-black/90 backdrop-blur-sm p-6">
-              <h3 className="text-xl font-semibold text-yellow-400 mb-4">
-                Team Information
-              </h3>
-              <div>
-                <label
-                  htmlFor="teamName"
-                  className="block text-sm font-medium text-gray-300 mb-2"
-                >
-                  Team Name *
-                </label>
-                <input
-                  id="teamName"
-                  type="text"
-                  value={teamName}
-                  onChange={(e) => setTeamName(e.target.value)}
-                  placeholder="Enter your team's name"
-                  required
-                  className={`w-full p-3 rounded-lg bg-gray-800/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 ${
-                    showTeamNameError
-                      ? "border-2 border-red-500"
-                      : "border border-gray-600"
-                  }`}
-                />
-                {showTeamNameError && (
-                  <div className="text-red-500 text-xs mt-1 font-medium">
-                    This team name is already taken
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="rounded-lg border border-yellow-400/20 bg-black/90 backdrop-blur-sm p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-semibold text-yellow-400 m-0">
-                  Team Members (4 required) <span className="text-sm font-light italic text-yellow-200/90">
-    *Only for Computer Engineering department
-  </span>
-                </h3>
-              </div>
-              <div className="space-y-4">
-                {members.map((member, index) => (
-                  <MemberRow
-                    key={index}
-                    member={member}
-                    index={index}
-                    onInputChange={handleMemberInputChange}
-                    emailError={emailErrors[index]}
-                  />
-                ))}
-              </div>
-            </div>
-{/* 
-            <div className="text-xs text-gray-400 bg-gray-900/50 p-3 rounded-lg">
-              <strong>* Required fields:</strong> Team Name, and at least one
-              member with Name and Moodle ID
-            </div> */}
-
-            <div className="flex justify-center pt-4">
-              <button
-                type="submit"
-                disabled={isLoading}
-                className={`px-8 py-3 text-lg font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-300 ${
-                  isLoading
-                    ? "bg-gray-600 text-gray-400 cursor-not-allowed opacity-60"
-                    : "bg-yellow-400 hover:bg-yellow-300 text-black cursor-pointer shadow-lg hover:shadow-xl"
-                }`}
-              >
-                Review & Register Team
-              </button>
-            </div>
-          </form>
+          <div className="min-h-screen flex flex-col items-center justify-center">
+            <p className="font-starjout text-yellow-400 drop-shadow-lg hover:text-yellow-300 transition-colors text-7xl mb-20">Registrations have been <span className="flex justify-center">closed.</span></p>
+          </div>
         </main>
         <Footer />
       </div>
