@@ -3,7 +3,7 @@ import { User, Mail, Phone, MapPin, GraduationCap, Users } from "lucide-react";
 
 const MemberRow = ({ member, index, onInputChange, emailError }) => {
   const divisionOptions = ["A", "B", "C"];
-  const yearOptions = ["SE", "TE", "BE"];
+  const yearOptions = ["FE (COMPS)","SE (COMPS)", "TE (COMPS)", "BE (COMPS)"];
 
   const inputBaseStyle = `w-full p-3 pl-10 rounded-lg bg-gray-900/50 text-gray-100 placeholder-gray-500 
     border border-yellow-400/20 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 
