@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import CombinedSpaceAnimation from "@/components/preloader";
 
+
 // --- Data for Page Sections ---
 const items = [
   {
@@ -25,43 +26,30 @@ const items = [
   },
 ];
 
+
 const timelineEvents = [
   {
     day: "Friday",
     date: "October 3, 2025",
     events: [
       {
-        
         time: "7:00 PM",
         title: "Problem Statement Reveal",
         description:
-          "The problem statements are live! Dive in, brainstorm with your team, and start shaping your ideas.",
-      },
-      // {
-        
-      //   time: "7:00 PM - 8:00 PM",
-      //   title: "Doubt Session",
-      //   description:
-      //     "If you have any doubts you can contact the core team members through the gmeet link which will be circulated in the team leaders group",
-      // },
-      {
-        time: "8:00 PM- 9:00 PM",
-        title: "uploading selected PS",
-        description:
-          "All teams must submit a form with their idea brief and public GitHub repository along with your G-meet link.",
+          "The problem statements will be revealed at 7:00 PM on the Team Leaders group and the website. Teams can start brainstorming and select a problem statement that suits them best.",
       },
       {
-        time: "9:00 PM",
-        title: "MENToRSHiP SESSioN (oNLiNE)",
+        time: "8:00 PM – 9:00 PM",
+        title: "uploading Selected Problem Statement",
         description:
-          "Mentors will be available to guide teams. Each team will get 15 minutes with their mentor to seek guidance.",
+          "All teams must submit a HACKNOVA Commencement Form (will be shared in the group) with: Selected Problem Statement, Public GitHub Repository Link, Google Meet link\nNote:\nGoogle Meet Link: This link should remain active throughout the hackathon. At least one team member should always be present in the Meet, as mentors and evaluators will use this link to join for guidance and evaluation.\nPublic GitHub Repository: Repository should be created only after the hackathon starts. All project work must be pushed here for progress tracking.",
       },
-      // {
-      //   time: "9:00 PM Onwards",
-      //   title: "Mentorship Session (online)",
-      //   description:
-      //     "From evening onwards, mentors will be available to guide teams. Each team will get 15 minutes with their mentor to seek guidance.",
-      // },
+      {
+        time: "9:00 PM Onwards",
+        title: "Mentorship Session (online)",
+        description:
+          "Mentors will be available to guide teams. Each team will get 15 minutes with a mentor for guidance.",
+      },
     ],
   },
   {
@@ -70,34 +58,42 @@ const timelineEvents = [
     events: [
       {
         time: "6:00 AM",
-        title: "First Evaluation (Checkpoint) - online",
+        title: "First Evaluation (online Checkpoint)",
         description:
-          "Teams must submit their code repo and a short ppt. Evaluators will evaluate each team.",
+          "Teams must submit their code repository and a short PPT. Evaluators will assess each team based on the judging criteria.",
+      },
+      {
+        time: "8:00 AM",
+        title: "Shortlisted Teams Announcement",
+        description: "Shortlisted teams will be announced via the Team Leaders group.",
       },
       {
         time: "8:30 AM",
-        title: "Shortlisted team announcement",
-        description: "Shortlisted teams must report to college before 10 AM with all members present - late arrival leads to disqualification.",
+        title: "Reporting to College",
+        description:
+          "Shortlisted teams must report to college before 8:30 AM with all the members present. Late arrivals will be disqualified.",
       },
       {
-        time: "10:00 AM - 01:00 PM",
-        title: "",
-        description: "Shortlisted teams will wait in respective labs and continue working on their projects. ",
+        time: "8:30 AM – 1:00 PM",
+        title: "Project Work at College",
+        description: "Teams will wait in their respective labs and continue working on their projects.",
       },
       {
         time: "1:00 PM",
-        title: "Final Evaluation (offline in College)",
+        title: "Final Evaluation (offline at College)",
         description:
-          "Each team presents their project with final ppt and prototype. A judging panel evaluates based on criteria.",
+          "Each team presents their final PPT and prototype. The judging panel evaluates based on criteria.",
       },
       {
         time: "3:00 PM",
         title: "Closing Ceremony",
-        description: "Winners are announced and certificates are distributed.",
+        description:
+          "Winners will be announced. Prizes and certificates will be awarded to the winning teams. E-certificates for all the participants.",
       },
     ],
   },
 ];
+
 
 // --- Modal Poster Component ---
 const PosterModal = ({ isOpen, onClose }) => {
@@ -106,6 +102,7 @@ const PosterModal = ({ isOpen, onClose }) => {
       onClose();
     }
   };
+
 
   return (
     // <AnimatePresence>
@@ -122,6 +119,7 @@ const PosterModal = ({ isOpen, onClose }) => {
     //       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm">
     //         <div className="absolute inset-0 bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse" />
     //       </div>
+
 
           
     //       <motion.div
@@ -153,6 +151,7 @@ const PosterModal = ({ isOpen, onClose }) => {
     //           </svg>
     //         </button>
 
+
             
     //         <motion.img
     //           initial={{ scale: 0.9 }}
@@ -170,6 +169,7 @@ const PosterModal = ({ isOpen, onClose }) => {
   );
 };
 
+
 // --- Reusable Countdown Timer Component ---
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -180,14 +180,17 @@ const CountdownTimer = () => {
   });
   const [eventStatus, setEventStatus] = useState("upcoming");
 
+
   useEffect(() => {
     const hackathonStartDate = new Date("2025-10-03T19:00:00+05:30").getTime();
     const hackathonEndDate = new Date("2025-10-04T17:00:00+05:30").getTime();
+
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distanceToStart = hackathonStartDate - now;
       const distanceToEnd = hackathonEndDate - now;
+
 
       if (distanceToStart > 0) {
         setEventStatus("upcoming");
@@ -217,8 +220,10 @@ const CountdownTimer = () => {
       }
     }, 1000);
 
+
     return () => clearInterval(timer);
   }, []);
+
 
   const TimerDigit = ({ value }) => (
     <AnimatePresence mode="wait">
@@ -236,6 +241,7 @@ const CountdownTimer = () => {
     </AnimatePresence>
   );
 
+
   const getTimerTitle = () =>
     ({
       upcoming: "Event Starts in:",
@@ -243,12 +249,14 @@ const CountdownTimer = () => {
       ended: "Event Has Ended",
     }[eventStatus] || "Event Starts In:");
 
+
   const getTimerColor = () =>
     ({
       upcoming: "text-yellow-400 font-starjedi tracking-wider",
       live: "text-red-400 animate-pulse",
       ended: "text-gray-400",
     }[eventStatus] || "text-yellow-400");
+
 
   return (
     <motion.div
@@ -304,6 +312,7 @@ const CountdownTimer = () => {
   );
 };
 
+
 // --- Custom Preloader Wrapper ---
 const CustomPreloaderWrapper = ({ onComplete }) => {
   useEffect(() => {
@@ -312,6 +321,7 @@ const CustomPreloaderWrapper = ({ onComplete }) => {
     }, 9500);
     return () => clearTimeout(timer);
   }, [onComplete]);
+
 
   return (
     <div className="fixed inset-0 w-screen h-screen bg-[#131314] z-[9999] overflow-hidden">
@@ -322,13 +332,16 @@ const CustomPreloaderWrapper = ({ onComplete }) => {
   );
 };
 
+
 // --- Main Landing Page Component ---
 const LandingPage = () => {
   const [pageState, setPageState] = useState(() => {
     return sessionStorage.getItem("hasSeenIntro") ? "completed" : "loading";
   });
 
+
   const [showPosterModal, setShowPosterModal] = useState(false);
+
 
   useEffect(() => {
     if (pageState === "loading") {
@@ -342,9 +355,11 @@ const LandingPage = () => {
     }
   }, [pageState]);
 
+
   const handleClosePosterModal = () => {
     setShowPosterModal(false);
   };
+
 
   return (
     <>
@@ -354,6 +369,7 @@ const LandingPage = () => {
         )}
       </AnimatePresence>
 
+
       <style>{`
         @keyframes fadeInLanding { from { opacity: 0; transform: scale(0.98) translateY(20px); filter: blur(1px); } to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); } }
         @keyframes slideInFromTop { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
@@ -362,6 +378,7 @@ const LandingPage = () => {
         .twinkling { background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center; animation: move-twink-back 200s linear infinite; }
         .bg-gradient-radial { background: radial-gradient(circle, var(--tw-gradient-stops)); }
       `}</style>
+
 
       <div
         className={`bg-transparent min-h-screen relative z-10 ${
@@ -442,6 +459,7 @@ const LandingPage = () => {
           </section>
         </div>
 
+
         <div
           id="about-section"
           className="relative bg-gradient-to-b from-[#010101] to-[#0a0a0a] min-h-screen"
@@ -494,6 +512,7 @@ const LandingPage = () => {
             </motion.div>
           </section>
         </div>
+
 
         <div
           id="timeline"
@@ -584,6 +603,7 @@ const LandingPage = () => {
           </section>
         </div>
 
+
         <div
           className={`bg-[#131314] ${
             pageState === "completed"
@@ -595,10 +615,12 @@ const LandingPage = () => {
         </div>
       </div>
 
+
       {/* Poster Modal */}
       <PosterModal isOpen={showPosterModal} onClose={handleClosePosterModal} />
     </>
   );
 };
+
 
 export default LandingPage;

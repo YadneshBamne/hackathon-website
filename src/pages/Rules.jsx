@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from "@/components/navbar"; // Assuming you have a Navbar
 import Footer from "@/components/footer"; // Assuming you have a Footer
 
+
 // Data for the rules, making it easier to manage
 const rulesData = [
   {
@@ -15,32 +16,40 @@ const rulesData = [
     title: "Event Mode and Attendance",
     points: [
       "The event will be conducted in Hybrid Mode.",
-      "All team members must report to the college on time with the full team present.",
-      "Any delay will lead to disqualification of the team.",
-      "No excuses such as distance, traffic, or personal reasons will be accepted so plan accordingly.",
+      "Shortlisted teams must report to college on time on 4th Oct with all the team members present.",
+      "Any delay will lead to disqualification of the team. No excuses such as distance, traffic, or personal reasons will be accepted — so plan accordingly.",
     ],
   },
   {
     title: "Development Rules",
     points: [
-      "All coding and development should start only after the official kickoff.",
+      "Public GitHub repository should be created only after the official kickoff.",
+      "All coding and development should take place only during the hackathon time period.",
       "Use of open-source libraries/APIs is allowed (must give credit).",
       "Plagiarism or submission of pre-built projects will lead to disqualification.",
     ],
   },
   {
-    title: "First Evaluation",
+    title: "Deliverables and Evaluation",
     points: [
-      "Teams must be ready for first evaluation at 6:00 AM sharp.",
+      "Teams must submit their checkpoint deliverables at 6:00 AM sharp.",
       "Final presentation is mandatory for all shortlisted teams.",
-      "Judges decisions will be final and binding.",
+      "Judges’ decisions will be final and binding.",
     ],
   },
   {
     title: "Code of Conduct",
     points: ["Teams must respect the mentors, judges, and organizers at all times."],
   },
+  {
+    title: "Prizes and Certificates",
+    points: [
+      "Winners will be awarded prizes and winner certificates.",
+      "All participants will receive a digital certificate of participation.",
+    ],
+  },
 ];
+
 
 const Rules = () => {
   return (
@@ -132,5 +141,6 @@ const Rules = () => {
     </>
   )
 }
+
 
 export default Rules;
