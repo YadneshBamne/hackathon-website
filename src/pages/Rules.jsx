@@ -6,14 +6,14 @@ import Footer from "@/components/footer"; // Assuming you have a Footer
 // Data for the rules, making it easier to manage
 const rulesData = [
   {
-    title: "Eligibility and Participation",
+    title: "Eligibility & Participation",
     points: [
       "Participation is strictly for Computer Engineering students only.",
       "Each team must consist of exactly 4 members.",
     ],
   },
   {
-    title: "Event Mode and Attendance",
+    title: "Event Mode & Attendance",
     points: [
       "The event will be conducted in Hybrid Mode.",
       "Shortlisted teams must report to college on time on 4th Oct with all the team members present.",
@@ -30,7 +30,7 @@ const rulesData = [
     ],
   },
   {
-    title: "Deliverables and Evaluation",
+    title: "Deliverables & Evaluation",
     points: [
       "Teams must submit their checkpoint deliverables at 6:00 AM sharp.",
       "Final presentation is mandatory for all shortlisted teams.",
@@ -42,7 +42,7 @@ const rulesData = [
     points: ["Teams must respect the mentors, judges, and organizers at all times."],
   },
   {
-    title: "Prizes and Certificates",
+    title: "Prizes & Certificates",
     points: [
       "Winners will be awarded prizes and winner certificates.",
       "All participants will receive a digital certificate of participation.",
