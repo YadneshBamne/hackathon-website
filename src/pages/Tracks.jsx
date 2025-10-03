@@ -1,23 +1,28 @@
 import React from 'react';
-import Navbar from "@/components/navbar"; // Assuming you have a Navbar
-import Footer from "@/components/footer"; // Assuming you have a Footer
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import { Button } from '@/components/ui/button';
+import { Download, FileText, Eye } from 'lucide-react'; // npm i lucide-react
 
-// Data for the tracks. You can easily add more tracks here later.
 const trackData = [
   {
-    title: "Track 1: Celestial Innovations",
-    description: "Forge new constellations of technology. This track is for groundbreaking ideas that push the boundaries of what's possible.",
-    // You can add more properties like an icon or image later
+    heading: "Problem Statement - 1",
+    title: "Attendance Anomaly System",
+    pdfUrl: "/PS1.pdf",
+    downloadName: "Attendance-AnomalySystem.pdf",
   },
   {
-    title: "Track 2: Galactic Guardians",
-    description: "Build solutions that protect and serve our digital universe. Focus on cybersecurity, data privacy, and ethical tech.",
+    heading: "Problem Statement - 2",
+    title: "Campus Access Control",
+    pdfUrl: "/PS2.pdf",
+    downloadName: "Campus-Access-Control.pdf",
   },
 ];
 
 const Tracks = () => {
   return (
     <>
+      {/* Respect reduced motion while keeping ambience [motion-safe variants] */}
       <style>
         {`
           @keyframes move-twink-back {
@@ -28,85 +33,123 @@ const Tracks = () => {
             from { background-position: 0 0; }
             to { background-position: 10000px 0; }
           }
-          .stars-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-          }
-          .stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
-            z-index: 0;
-          }
-          .twinkling {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
-            animation: move-twink-back 200s linear infinite;
-            z-index: 1;
-          }
-          .clouds {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent url('https://i.imgur.com/mHbScrQ.png') repeat top center;
-            animation: move-clouds-back 200s linear infinite;
-            z-index: 2;
+          .stars-background { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+          .stars, .twinkling, .clouds { position: absolute; inset: 0; width: 100%; height: 100%; }
+          .stars { background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center; z-index: 0; }
+          .twinkling { background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center; z-index: 1; }
+          .clouds { background: transparent url('https://i.imgur.com/mHbScrQ.png') repeat top center; z-index: 2; }
+          @media (prefers-reduced-motion: no-preference) {
+            .twinkling { animation: move-twink-back 200s linear infinite; }
+            .clouds { animation: move-clouds-back 200s linear infinite; }
           }
         `}
       </style>
-      
+
       <div className="stars-background">
-        <div className="stars"></div>
-        <div className="twinkling"></div>
-        <div className="clouds"></div>
+        <div className="stars" />
+        <div className="twinkling" />
+        <div className="clouds" />
       </div>
-      
+
       <div className="relative z-10 flex min-h-screen flex-col bg-transparent text-white">
         <Navbar />
-        
+
         <main className="flex-grow min-h-screen">
-          <div className="mx-auto max-w-7xl px-4 py-24 sm:py-32">
-            <h1 className="mb-16 text-center font-starjout text-4xl font-bold text-yellow-400 md:text-5xl">
-              Choose Your Mission Track
-            </h1>
-            
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="mx-auto max-w-7xl px-4 py-20 sm:py-24">
+            <header className="mb-28 mt-10 text-center">
+              <h1 className="mb-4 text-4xl font-bold text-yellow-400 md:text-5xl font-starjout">
+                Choose Your Mission Track
+              </h1>
+              
+            </header>
+
+            <section
+              className="grid grid-cols-1 gap-8 md:grid-cols-2"
+              aria-label="Problem statement tracks"
+            >
               {trackData.map((track) => (
-                <div 
+                <article
                   key={track.title}
-                  className="group transform rounded-xl border border-yellow-400/30 bg-black/50 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-yellow-400/60 hover:shadow-2xl hover:shadow-yellow-400/10"
+                  tabIndex={0}
+                  className="
+                    group relative rounded-2xl border border-yellow-400/20 bg-black/50 p-6
+                    outline-none transition
+                    hover:border-yellow-400/50 hover:shadow-2xl hover:shadow-yellow-400/10
+                    focus-visible:border-yellow-400/70 focus-visible:ring-2 focus-visible:ring-yellow-400/40
+                    motion-safe:transition-all motion-safe:duration-300 tracking wider
+                  "
                 >
-                  <h2 className="mb-4 font-starjout text-2xl font-semibold text-yellow-300">
+                  {/* Badge + Icon header */}
+                  <div className="mb-5 flex items-center gap-3">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3 py-1 text-xs uppercase tracking-wider text-yellow-300 ">
+                      <FileText className="h-3.5 w-3.5" />
+                      {track.heading}
+                    </span>
+                  </div>
+
+                  <h2 className="mb-5 text-2xl font-semibold text-yellow-300 font-starjout">
                     {track.title}
                   </h2>
-                  <p className="text-gray-300 leading-relaxed">
-                    {track.description}
-                  </p>
-                </div>
+
+                  
+
+                  {/* Actions */}
+                  <div className="flex flex-wrap items-center gap-3">
+                    {/* Primary: Download */}
+                    <a href={track.pdfUrl} download={track.downloadName}>
+                      <Button
+                        className="
+                          bg-yellow-400 text-black
+                          hover:bg-black hover:text-yellow-400
+                          border border-yellow-400
+                          motion-safe:transition-all motion-safe:duration-200
+                          motion-safe:hover:-translate-y-0.5
+                          focus-visible:ring-2 focus-visible:ring-yellow-400/50 cursor-pointer font-starjout
+                        "
+                      >
+                        <Download className="mr-2 h-4 w-4" />
+                        Download PS
+                      </Button>
+                    </a>
+
+                    {/* Secondary: View in new tab */}
+                    <a
+                      href={track.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="
+                        inline-flex items-center rounded-md border border-yellow-400/40 px-3 py-2 text-sm text-yellow-300
+                        hover:border-yellow-400/70 hover:bg-yellow-400/10
+                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/40
+                        motion-safe:transition-colors font-starjout
+                      "
+                      aria-label={`View ${track.title} PDF in a new tab`}
+                    >
+                      <Eye className="mr-2 h-4 w-4" />
+                      view
+                    </a>
+                  </div>
+
+                  {/* Subtle decorative gradient on hover */}
+                  <div
+                    className="
+                      pointer-events-none absolute inset-0 rounded-2xl opacity-0
+                      group-hover:opacity-100
+                      motion-safe:transition-opacity
+                      bg-gradient-to-br from-yellow-400/5 via-transparent to-transparent
+                    "
+                    aria-hidden="true"
+                  />
+                </article>
               ))}
-            </div>
+            </section>
           </div>
         </main>
-        
+
         <Footer />
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Tracks;

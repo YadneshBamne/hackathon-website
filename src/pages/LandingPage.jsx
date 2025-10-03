@@ -4,7 +4,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import CombinedSpaceAnimation from "@/components/preloader";
+import { Trophy, Medal, Gift } from "lucide-react";
 
+const prizes = [
+  // {
+  //   tier: "Champion",
+  //   amount: "₹10,000",
+  //   perks: ["Trophy", "Certificates", "Merch"],
+  //   icon: Trophy,
+  // },
+  // {
+  //   tier: "Runner-Up",
+  //   amount: "₹6,000",
+  //   perks: ["Medal", "Certificates"],
+  //   icon: Medal,
+  // },
+  // {
+  //   tier: "Second Runner-Up",
+  //   amount: "₹4,000",
+  //   perks: ["Medal", "Certificates"],
+  //   icon: Gift,
+  // },
+];
 
 // --- Data for Page Sections ---
 const items = [
@@ -25,7 +46,6 @@ const items = [
     desc: "Win recognition, prizes, and exclusive event swag.",
   },
 ];
-
 
 const timelineEvents = [
   {
@@ -65,7 +85,8 @@ const timelineEvents = [
       {
         time: "8:00 AM",
         title: "Shortlisted Teams Announcement",
-        description: "Shortlisted teams will be announced via the Team Leaders group.",
+        description:
+          "Shortlisted teams will be announced via the Team Leaders group.",
       },
       {
         time: "8:30 AM",
@@ -76,7 +97,8 @@ const timelineEvents = [
       {
         time: "8:30 AM – 1:00 PM",
         title: "Project Work at College",
-        description: "Teams will wait in their respective labs and continue working on their projects.",
+        description:
+          "Teams will wait in their respective labs and continue working on their projects.",
       },
       {
         time: "1:00 PM",
@@ -94,7 +116,6 @@ const timelineEvents = [
   },
 ];
 
-
 // --- Modal Poster Component ---
 const PosterModal = ({ isOpen, onClose }) => {
   const handleBackdropClick = (e) => {
@@ -102,7 +123,6 @@ const PosterModal = ({ isOpen, onClose }) => {
       onClose();
     }
   };
-
 
   return (
     // <AnimatePresence>
@@ -115,13 +135,11 @@ const PosterModal = ({ isOpen, onClose }) => {
     //       className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
     //       onClick={handleBackdropClick}
     //     >
-         
+
     //       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm">
     //         <div className="absolute inset-0 bg-gradient-radial from-yellow-400/20 via-transparent to-transparent animate-pulse" />
     //       </div>
 
-
-          
     //       <motion.div
     //         initial={{ scale: 0.8, opacity: 0 }}
     //         animate={{ scale: 1, opacity: 1 }}
@@ -133,7 +151,7 @@ const PosterModal = ({ isOpen, onClose }) => {
     //             "0 0 50px rgba(250, 204, 21, 0.3), 0 0 100px rgba(250, 204, 21, 0.2), 0 0 150px rgba(250, 204, 21, 0.1)",
     //         }}
     //       >
-            
+
     //         <button
     //           onClick={onClose}
     //           className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-red-500/20 hover:bg-red-500/30 border border-red-400/50 rounded-full transition-all duration-200 group"
@@ -151,8 +169,6 @@ const PosterModal = ({ isOpen, onClose }) => {
     //           </svg>
     //         </button>
 
-
-            
     //         <motion.img
     //           initial={{ scale: 0.9 }}
     //           animate={{ scale: 1 }}
@@ -169,7 +185,6 @@ const PosterModal = ({ isOpen, onClose }) => {
   );
 };
 
-
 // --- Reusable Countdown Timer Component ---
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -180,17 +195,14 @@ const CountdownTimer = () => {
   });
   const [eventStatus, setEventStatus] = useState("upcoming");
 
-
   useEffect(() => {
     const hackathonStartDate = new Date("2025-10-03T19:00:00+05:30").getTime();
     const hackathonEndDate = new Date("2025-10-04T17:00:00+05:30").getTime();
-
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
       const distanceToStart = hackathonStartDate - now;
       const distanceToEnd = hackathonEndDate - now;
-
 
       if (distanceToStart > 0) {
         setEventStatus("upcoming");
@@ -220,10 +232,8 @@ const CountdownTimer = () => {
       }
     }, 1000);
 
-
     return () => clearInterval(timer);
   }, []);
-
 
   const TimerDigit = ({ value }) => (
     <AnimatePresence mode="wait">
@@ -241,7 +251,6 @@ const CountdownTimer = () => {
     </AnimatePresence>
   );
 
-
   const getTimerTitle = () =>
     ({
       upcoming: "Event Starts in:",
@@ -249,14 +258,12 @@ const CountdownTimer = () => {
       ended: "Event Has Ended",
     }[eventStatus] || "Event Starts In:");
 
-
   const getTimerColor = () =>
     ({
       upcoming: "text-yellow-400 font-starjedi tracking-wider",
       live: "text-red-400 animate-pulse",
       ended: "text-gray-400",
     }[eventStatus] || "text-yellow-400");
-
 
   return (
     <motion.div
@@ -312,7 +319,6 @@ const CountdownTimer = () => {
   );
 };
 
-
 // --- Custom Preloader Wrapper ---
 const CustomPreloaderWrapper = ({ onComplete }) => {
   useEffect(() => {
@@ -321,7 +327,6 @@ const CustomPreloaderWrapper = ({ onComplete }) => {
     }, 9500);
     return () => clearTimeout(timer);
   }, [onComplete]);
-
 
   return (
     <div className="fixed inset-0 w-screen h-screen bg-[#131314] z-[9999] overflow-hidden">
@@ -332,16 +337,13 @@ const CustomPreloaderWrapper = ({ onComplete }) => {
   );
 };
 
-
 // --- Main Landing Page Component ---
 const LandingPage = () => {
   const [pageState, setPageState] = useState(() => {
     return sessionStorage.getItem("hasSeenIntro") ? "completed" : "loading";
   });
 
-
   const [showPosterModal, setShowPosterModal] = useState(false);
-
 
   useEffect(() => {
     if (pageState === "loading") {
@@ -355,11 +357,9 @@ const LandingPage = () => {
     }
   }, [pageState]);
 
-
   const handleClosePosterModal = () => {
     setShowPosterModal(false);
   };
-
 
   return (
     <>
@@ -369,7 +369,6 @@ const LandingPage = () => {
         )}
       </AnimatePresence>
 
-
       <style>{`
         @keyframes fadeInLanding { from { opacity: 0; transform: scale(0.98) translateY(20px); filter: blur(1px); } to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); } }
         @keyframes slideInFromTop { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
@@ -378,7 +377,6 @@ const LandingPage = () => {
         .twinkling { background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center; animation: move-twink-back 200s linear infinite; }
         .bg-gradient-radial { background: radial-gradient(circle, var(--tw-gradient-stops)); }
       `}</style>
-
 
       <div
         className={`bg-transparent min-h-screen relative z-10 ${
@@ -458,8 +456,54 @@ const LandingPage = () => {
             <CountdownTimer />
           </section>
         </div>
+        <section className="relative mx-auto max-w-7xl px-4 py-16 sm:py-20">
+  {/* Section header */}
+  <div className="mb-10 text-center">
+    <span className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-3 py-1 text-xs uppercase tracking-wider text-yellow-300">
+      Prize Pool
+    </span>
+    <h2 className="mt-4 tracking-wider text-3xl font-bold text-yellow-400 md:text-4xl font-starjout">
+      Rewards and Recognition
+    </h2>
+    <p className="mx-auto mt-3 max-w-2xl text-gray-300 font-starjout tracking-wider">
+      Celebrate outstanding solutions with cash prizes, trophies, and official recognition.
+    </p>
+  </div>
 
+  {/* Highlighted total pool card */}
+  <div
+    className="
+      relative mb-10 overflow-hidden rounded-2xl border border-yellow-400/20 bg-black/50 p-6
+      hover:border-yellow-400/50 hover:shadow-2xl hover:shadow-yellow-400/10
+      focus-within:border-yellow-400/70 focus-within:ring-2 focus-within:ring-yellow-400/40
+      motion-safe:transition-all motion-safe:duration-300
+    "
+    tabIndex={0}
+    aria-label="Total prize pool"
+  >
+    <div className="relative z-10 flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+      <div>
+        <h3 className="text-xl font-semibold text-yellow-300 font-starjout">
+          Total Prize Pool
+        </h3>
+        <p className="mt-1 text-sm text-gray-300">
+          Distributed across top teams with certificates and perks.
+        </p>
+      </div>
+      <div className="rounded-xl border border-yellow-400/40 bg-yellow-400/10 px-5 py-3">
+        <div className="text-sm uppercase font-extrabold text-yellow-300">
+          Amount
+        </div>
+        <div className="text-3xl font-bold text-yellow-400">
+          ₹8,000
+        </div>
+      </div>
+    </div>
+    {/* Decorative gradient */}
+    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-yellow-400/5 via-transparent to-transparent" />
+  </div>
 
+</section>
         <div
           id="about-section"
           className="relative bg-gradient-to-b from-[#010101] to-[#0a0a0a] min-h-screen"
@@ -475,11 +519,12 @@ const LandingPage = () => {
               <h2 className="text-4xl md:text-6xl font-bold text-yellow-400 font-starjout mb-6 mt-16">
                 About HackNova
               </h2>
-              <p className="text-white mb-6 font-starjout text-xl tracking-widest   ">CSA x GDG x Coder's Club</p>
+              <p className="text-white mb-6 font-starjout text-xl tracking-widest   ">
+                CSA x GDG x Coder's Club
+              </p>
               <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
                 HackNova is a 18-hour intergalactic coding odyssey where
                 brilliant minds unite to solve the universe's greatest
-                
                 challenges. Powered by the force of innovation, collaboration,
                 and stellar creativity.
               </p>
@@ -512,8 +557,6 @@ const LandingPage = () => {
             </motion.div>
           </section>
         </div>
-
-
         <div
           id="timeline"
           className="relative bg-gradient-to-b from-[#0a0a0a] to-[#131314] py-20"
@@ -602,8 +645,6 @@ const LandingPage = () => {
             </motion.div>
           </section>
         </div>
-
-
         <div
           className={`bg-[#131314] ${
             pageState === "completed"
@@ -615,12 +656,10 @@ const LandingPage = () => {
         </div>
       </div>
 
-
       {/* Poster Modal */}
       <PosterModal isOpen={showPosterModal} onClose={handleClosePosterModal} />
     </>
   );
 };
-
 
 export default LandingPage;
