@@ -104,20 +104,7 @@ const Footer = () => {
             </motion.div>
           ))}
 
-          {/* Contact Info */}
-          <motion.div {...motionVariants} transition={{ duration: 0.6, delay: 0.3 }}>
-            <h4 className="mb-6 font-starjout text-lg font-semibold text-yellow-400">
-              Contact Mission Control
-            </h4>
-            <div className="space-y-3 text-sm text-gray-400">
-              {contactInfo.map((contact) => (
-                <p key={contact.name} className="flex items-center gap-2">
-                  <Phone size={16} />
-                  {contact.name}: {contact.phone}
-                </p>
-              ))}
-            </div>
-          </motion.div>
+         
         </div>
 
         {/* Bottom Section */}
